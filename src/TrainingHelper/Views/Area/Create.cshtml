@@ -1,0 +1,27 @@
+﻿@model TrainingHelper.Models.Area
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create new Area </h4>
+<hr />
+
+<br />
+
+<form method="post" asp-action="Create" asp-controller="Area">
+ 
+    <br />
+    @Html.HiddenFor(model => model.AreaId)
+
+    @Html.LabelFor(model => model.Name, "Area Name:")
+    @Html.EditorFor(model => model.Name)
+
+    <br />
+    <input type="submit" value="Save" />
+</form>
+<br />
+<p>@Html.ActionLink("Back to Area", "Index")</p>
+<br />
+<p>@Html.ActionLink("Back to Home", "Index", "Fab")</p>

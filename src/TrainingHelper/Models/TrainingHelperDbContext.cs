@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace TrainingHelper.Models
 {
-    public class TrainingHelperContext : DbContext 
+    public class TrainingHelperDbContext : DbContext 
     {
 
-        public TrainingHelperContext()
+        public TrainingHelperDbContext()
         {
         }
 
@@ -26,7 +26,7 @@ namespace TrainingHelper.Models
             options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=TrainingHelper;integrated security=True");
         }
 
-        public TrainingHelperContext(DbContextOptions<TrainingHelperContext> options)
+        public TrainingHelperDbContext(DbContextOptions<TrainingHelperDbContext> options)
             : base(options)
         {
         }

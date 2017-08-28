@@ -7,7 +7,7 @@ using TrainingHelper.Models;
 
 namespace TrainingHelper.Migrations
 {
-    [DbContext(typeof(TrainingHelperContext))]
+    [DbContext(typeof(TrainingHelperDbContext))]
     [Migration("20170828194718_Initial")]
     partial class Initial
     {

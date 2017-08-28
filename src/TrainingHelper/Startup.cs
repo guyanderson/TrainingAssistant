@@ -28,7 +28,7 @@ namespace TrainingHelper
         {
 
             services.AddEntityFramework()
-                .AddDbContext<TrainingHelperContext>(options =>
+                .AddDbContext<TrainingHelperDbContext>(options =>
                     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddMvc();

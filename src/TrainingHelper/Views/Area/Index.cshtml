@@ -1,6 +1,21 @@
-﻿@{
+﻿@model IEnumerable<TrainingHelper.Models.Area>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Area
+
+<p>@Html.ActionLink("Add a new Area", "Create")</p>
+
+
+<div class="row">
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => x.Name)
+            </li>
+        }
+    </ul>
+</div>

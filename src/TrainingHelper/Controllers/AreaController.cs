@@ -19,5 +19,21 @@ namespace TrainingHelper.Controllers
         {
             return View(db.Areas.ToList());
         }
+
+
+        //Create new Area
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(string name)
+        {
+            Area newArea = new Area(name);
+            db.Areas.Add(newArea);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

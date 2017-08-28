@@ -7,7 +7,7 @@ using TrainingHelper.Models;
 
 namespace TrainingHelper.Migrations
 {
-    [DbContext(typeof(TrainingHelperContext))]
+    [DbContext(typeof(TrainingHelperDbContext))]
     partial class TrainingHelperContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
