@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "c22e1594fb26023fd5776ccb7ab11397749f8235"
+    "signature": "63d97ba42f8ca38ad7dde2d668adc23415d12ef3"
   },
   "compilationOptions": {
     "defines": [
@@ -19,6 +19,9 @@
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0",
           "bootstrap": "3.3.7",
+          "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+          "Microsoft.Extensions.Configuration.Json": "1.0.0",
           "RestSharp.NetCore": "105.2.3",
           "Newtonsoft.Json": "9.0.1",
           "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
@@ -26,8 +29,7 @@
           "Microsoft.Extensions.Logging.Console": "1.0.0",
           "Microsoft.AspNetCore.StaticFiles": "1.1.2",
           "Microsoft.AspNetCore.Mvc": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "1.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0"
+          "Microsoft.EntityFrameworkCore": "1.0.0"
         },
         "runtime": {
           "TrainingHelper.dll": {}
@@ -930,6 +932,35 @@
         },
         "compile": {
           "lib/netstandard1.3/Microsoft.Extensions.Configuration.EnvironmentVariables.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.FileExtensions/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.0.0",
+          "Microsoft.Extensions.FileProviders.Physical": "1.0.0",
+          "System.AppContext": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.Extensions.Configuration.FileExtensions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.Json/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "1.0.0",
+          "Microsoft.Extensions.Configuration.FileExtensions": "1.0.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Dynamic.Runtime": "4.0.11",
+          "System.IO.FileSystem": "4.3.0",
+          "System.Runtime.Serialization.Primitives": "4.1.1"
+        },
+        "runtime": {
+          "lib/netstandard1.3/Microsoft.Extensions.Configuration.Json.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/Microsoft.Extensions.Configuration.Json.dll": {}
         }
       },
       "Microsoft.Extensions.DependencyInjection/1.0.0": {
@@ -3972,6 +4003,16 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-A0yqS98VtPNlFkFI7YBlwkAekUHE/9mMeNc+K4RmgTjCrskuk6pX3LGhDU7aD5CPYc9Px7M2To/2u4xDSnRikg=="
+    },
+    "Microsoft.Extensions.Configuration.FileExtensions/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MO7XtmLiqnpgVTX34uzFPvIS7jPmBUGLN0MP5MsYu6CqYTIs90ULjtrV5TegH5mTqKTXWjZRGXL26R6apTyc4w=="
+    },
+    "Microsoft.Extensions.Configuration.Json/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-KRyEOe5/Xi3qyDMdEVh++e2pQRsI6C3wzINVExOcu9lOsFmXK/k4qOf244fyo59rnn6s5xKnIW3WbhxWS1hu2w=="
     },
     "Microsoft.Extensions.DependencyInjection/1.0.0": {
       "type": "package",

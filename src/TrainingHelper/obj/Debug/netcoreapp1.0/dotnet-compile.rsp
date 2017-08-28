@@ -1,5 +1,5 @@
---temp-output:c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\obj\Debug\netcoreapp1.0\
---out:c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\bin\Debug\netcoreapp1.0\TrainingHelper.dll
+--temp-output:C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\obj\Debug\netcoreapp1.0\
+--out:C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\bin\Debug\netcoreapp1.0\TrainingHelper.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -71,6 +71,8 @@
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.Configuration\1.0.0\lib\netstandard1.1\Microsoft.Extensions.Configuration.dll
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.Configuration.Abstractions\1.1.2\lib\netstandard1.0\Microsoft.Extensions.Configuration.Abstractions.dll
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.Configuration.EnvironmentVariables\1.0.0\lib\netstandard1.3\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+--reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.Configuration.FileExtensions\1.0.0\lib\netstandard1.3\Microsoft.Extensions.Configuration.FileExtensions.dll
+--reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.Configuration.Json\1.0.0\lib\netstandard1.3\Microsoft.Extensions.Configuration.Json.dll
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.DependencyInjection\1.0.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.DependencyInjection.Abstractions\1.1.1\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 --reference:C:\Users\epicodus\.nuget\packages\Microsoft.Extensions.DependencyModel\1.0.0\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll
@@ -201,10 +203,24 @@
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.ReaderWriter\4.3.0\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.XDocument\4.3.0\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll
---resource:"c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\obj\Debug\netcoreapp1.0\TrainingHelperdotnet-compile.deps.json",TrainingHelper.deps.json
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Program.cs
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Startup.cs
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\AreaController.cs
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\BayController.cs
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\FabController.cs
-c:\users\epicodus\documents\visual studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\OperatorController.cs
+--resource:"C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\obj\Debug\netcoreapp1.0\TrainingHelperdotnet-compile.deps.json",TrainingHelper.deps.json
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Program.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Startup.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\AreaController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\BayController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\CertificationController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\FabController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\OperatorController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\ShiftController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\ToolController.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170828194718_Initial.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170828194718_Initial.Designer.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\TrainingHelperContextModelSnapshot.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Area.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Bay.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Certification.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Fab.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Operator.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Shift.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Tool.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\TrainingHelperContext.cs

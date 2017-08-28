@@ -14,11 +14,7 @@ namespace TrainingHelper.Models
         public int ToolId { get; set; }
         public string Name { get; set; }
         public int BayId { get; set; }
-        public virtual ICollection<Shift> Shift { get; set; }
-        public virtual ICollection<Area> Area { get; set; }
-        public virtual ICollection<Bay> Bay { get; set; }
-        public virtual ICollection<Certification> Certification { get; set; }
-        public virtual ICollection<Operator> Operator { get; set; }
+
 
         public Tool() { }
 

@@ -7,13 +7,29 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using TrainingHelper.Models;
 
 namespace TrainingHelper
 {
     public class Startup
     {
-         public void ConfigureServices(IServiceCollection services)
+        public IConfigurationRoot Configuration { get; set; }
+        public Startup(IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json");
+            Configuration = builder.Build();
+        }
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+            services.AddEntityFramework()
+                .AddDbContext<TrainingHelperContext>(options =>
+                    options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 
             services.AddMvc();
         }
