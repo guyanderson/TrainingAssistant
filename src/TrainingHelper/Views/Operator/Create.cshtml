@@ -1,0 +1,26 @@
+﻿@model TrainingHelper.Models.Operator
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Create a new Operator </h4>
+<hr />
+
+<br />
+
+<form method="post" asp-action="Create" asp-controller="Operator">
+
+    <br />
+    @Html.HiddenFor(model => model.OperatorId)
+
+    @Html.LabelFor(model => model.Name, "Operator Name:")
+    @Html.EditorFor(model => model.Name)
+
+    <br />
+    <input type="submit" value="Save" />
+</form>
+<br />
+
+<h3>Incomplete, need to add shift to operator.</h3>

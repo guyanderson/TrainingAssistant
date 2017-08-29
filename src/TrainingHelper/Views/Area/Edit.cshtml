@@ -1,0 +1,21 @@
+﻿@model TrainingHelper.Models.Area
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><strong>Edit this Area:</strong> @Html.DisplayFor(model => model.Name)</h4>
+<hr />
+
+<br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.AreaId)
+
+    @Html.LabelFor(model => model.Name, "Area Name:")
+    @Html.EditorFor(model => model.Name)
+
+    <br />
+    <input type="submit" value="Save" />
+}

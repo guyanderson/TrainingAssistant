@@ -1,6 +1,21 @@
-﻿@{
+﻿@model IEnumerable<TrainingHelper.Models.Operator>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-Operator
+<br />
+<h4>Here is a list of all Operators in the Fab.</h4>
+<hr />
+
+<div class="row">
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => x.Name)
+            </li>
+        }
+    </ul>
+</div>

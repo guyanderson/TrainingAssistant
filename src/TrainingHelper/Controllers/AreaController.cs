@@ -21,12 +21,12 @@ namespace TrainingHelper.Controllers
         }
 
 
-        //Create new Area
+        //Create new Area GET
         public IActionResult Create()
         {
             return View();
         }
-
+        //Create new Operator POST
         [HttpPost]
         public IActionResult Create(string name)
         {
@@ -35,5 +35,25 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult List()
+        {
+            return View(db.Areas.ToList());
+        }
+        //Edit Area GET
+        public IActionResult Edit(int id)
+        {
+            var thisArea = db.Areas.FirstOrDefault(x => x.AreaId == id);
+            return View(thisArea);
+        }
+        //Edit Area POST
+        [HttpPost]
+        public IActionResult Edit(Area area)
+        {
+            db.Entry(area).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
