@@ -24,6 +24,11 @@ namespace TrainingHelper.Controllers
         {
             return View();
         }
+
+        public IActionResult List()
+        {
+            return View(db.Operators.ToList());
+        }
         //Create new Operator POST
         [HttpPost]
         public IActionResult Create(string name, int shiftId)
@@ -33,5 +38,6 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
     }
 }

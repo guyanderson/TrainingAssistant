@@ -30,6 +30,11 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult List()
+        {
+            return View(db.Bays.ToList());
+        }
+
     }
 }
 
