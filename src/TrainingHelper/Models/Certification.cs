@@ -13,12 +13,14 @@ namespace TrainingHelper.Models
         [Key]
         public int CertificationId { get; set; }
         public string Name { get; set; }
+        public int TargetTrained { get; set; }
 
         public Certification() { }
 
-        public Certification(string name)
+        public Certification(string name, int target)
         {
             Name = name;
+            TargetTrained = target;
         }
 
     }

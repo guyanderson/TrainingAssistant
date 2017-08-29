@@ -13,8 +13,8 @@ namespace TrainingHelper.Models
         {
         }
 
+        public DbSet<Fab> Fab { get; set; }
         public DbSet<Area> Areas { get; set; }
-
         public DbSet<Bay> Bays { get; set; }
         public DbSet<Certification> Certifications { get; set; }
         public DbSet<Operator> Operators { get; set; }

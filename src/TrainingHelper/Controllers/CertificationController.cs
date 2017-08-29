@@ -30,9 +30,9 @@ namespace TrainingHelper.Controllers
             return View(db.Certifications.ToList());
         }
         [HttpPost]
-        public IActionResult Create(string name)
+        public IActionResult Create(string name, int target)
         {
-            Certification newCertification = new Certification(name);
+            Certification newCertification = new Certification(name, target);
             db.Certifications.Add(newCertification);
             db.SaveChanges();
             return RedirectToAction("Index");

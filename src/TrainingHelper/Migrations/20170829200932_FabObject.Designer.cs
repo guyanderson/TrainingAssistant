@@ -8,9 +8,10 @@ using TrainingHelper.Models;
 namespace TrainingHelper.Migrations
 {
     [DbContext(typeof(TrainingHelperDbContext))]
-    partial class TrainingHelperContextModelSnapshot : ModelSnapshot
+    [Migration("20170829200932_FabObject")]
+    partial class FabObject
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

@@ -13,15 +13,17 @@ namespace TrainingHelper.Models
         [Key]
         public int BayId { get; set; }
         public string Name { get; set; }
+        public int TargetTrained { get; set; }
         public int AreaId { get; set; }
 
         public virtual ICollection<Area> Area { get; set; }
 
         public Bay() { }
 
-        public Bay(string name, int areaId)
+        public Bay(string name, int target, int areaId)
         {
             Name = name;
+            TargetTrained = target;
             AreaId = areaId;
         }
 
