@@ -14,21 +14,38 @@ namespace TrainingHelper.Controllers
     public class ToolController : Controller
     {
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
+
+        //GET Tool Index View
         public IActionResult Index()
         {
             return View(db.Tools.ToList());
         }
+        //GET Tool List for Admin Editing
         public IActionResult List()
         {
             return View(db.Tools.ToList());
         }
-
+        //Get Create Tool View
+        public IActionResult Create()
+        {
+            return View();
+        }
+        //Create new Operator POST
+        [HttpPost]
+        public IActionResult Create(string name, int bayId)
+        {
+            Tool newTool = new Tool(name, bayId);
+            db.Tools.Add(newTool);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         //Edit Tool GET
         public IActionResult Edit(int id)
         {
             var thisTool = db.Tools.FirstOrDefault(x => x.ToolId == id);
             return View(thisTool);
         }
+
         //Edit Tool POST
         [HttpPost]
         public IActionResult Edit(Tool tool)
@@ -37,6 +54,7 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //Delete Tool 
         public IActionResult Delete(int id)
         {
             var thisTool = db.Tools.FirstOrDefault(x => x.ToolId == id);

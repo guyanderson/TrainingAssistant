@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TrainingHelper.Models.Bay
+
+
 @{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h4>Create a new Bay </h4>
+<hr />
+
+<br />
+
+<form method="post" asp-action="Create" asp-controller="Bay">
+
+    <br />
+    @Html.HiddenFor(model => model.BayId)
+
+    @Html.LabelFor(model => model.Name, "Bay Name:")
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    <strong>Select a Shift for this operator:</strong>
+    <select @Html.EditorFor(model => model.AreaId)>
+        <option value="2">Photo</option>
+        <option value="3">Plasma Etch</option>
+        <option value="4">Wet Etch</option>
+        <option value="5">Implant</option>
+        <option value="6">Metals</option>
+        <option value="7">Diffusion</option>
+    </select>
+    <br />
+    <br />
+    <input type="submit" value="Save" />
+</form>
+<br />

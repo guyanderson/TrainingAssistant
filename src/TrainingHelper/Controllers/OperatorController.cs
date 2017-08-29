@@ -19,16 +19,16 @@ namespace TrainingHelper.Controllers
             return View(db.Operators.ToList());
         }
 
+        public IActionResult List()
+        {
+            return View(db.Operators.ToList());
+        }
         //Create new Operator GET
         public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult List()
-        {
-            return View(db.Operators.ToList());
-        }
         //Create new Operator POST
         [HttpPost]
         public IActionResult Create(string name, int shiftId)
