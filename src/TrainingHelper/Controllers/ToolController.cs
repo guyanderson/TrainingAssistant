@@ -16,7 +16,7 @@ namespace TrainingHelper.Controllers
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
         public IActionResult Index()
         {
-            return View();
+            return View(db.Tools.ToList());
         }
         public IActionResult List()
         {

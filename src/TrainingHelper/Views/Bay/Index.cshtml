@@ -1,5 +1,21 @@
-﻿@{
+﻿@model IEnumerable<TrainingHelper.Models.Bay>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-Bay
+
+<br />
+<h4>Here is a list of all Bays in the Fab.</h4>
+<hr />
+
+<div class="row">
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => x.Name)
+            </li>
+        }
+    </ul>
+</div>
