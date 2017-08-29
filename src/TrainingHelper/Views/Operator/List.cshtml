@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<TrainingHelper.Models.Operator>
+
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<br />
+<h4>Here's the list of all Operators in the Fab. Choose one to Edit or Delete.</h4>
+<hr />
+
+<div class="row">
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => x.Name) |
+                @Html.ActionLink("Edit", "Edit", new { id = x.OperatorId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = x.OperatorId })
+            </li>
+        }
+    </ul>
+</div>
