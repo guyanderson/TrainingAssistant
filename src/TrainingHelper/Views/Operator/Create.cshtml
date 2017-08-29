@@ -1,5 +1,6 @@
 ﻿@model TrainingHelper.Models.Operator
 
+
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,10 +18,26 @@
 
     @Html.LabelFor(model => model.Name, "Operator Name:")
     @Html.EditorFor(model => model.Name)
-
     <br />
+    <br />
+    <strong>Select a Shift for this operator:</strong>
+    <select @Html.EditorFor(model => model.ShiftId)>
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Night 1</option>
+        <option value="4">Night 2</option>
+    </select>
+    <br />
+    <br />
+    @*  Switch to Radio buttons later
+    <div @Html.EditorFor(model => model.ShiftId)>
+        <input type="radio" name="group1" value="1"> Day 1<br>
+        <input type="radio" name="group1" value="2"> Day 2<br>
+        <input type="radio" name="group1" value="3"> Night 1<br>
+        <input type="radio" name="group1" value="4"> Night 2<br>
+    </div>
+    *@
     <input type="submit" value="Save" />
 </form>
 <br />
 
-<h3>Incomplete, need to add shift to operator.</h3>
