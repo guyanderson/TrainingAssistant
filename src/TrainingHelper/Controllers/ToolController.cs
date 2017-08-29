@@ -22,5 +22,27 @@ namespace TrainingHelper.Controllers
         {
             return View(db.Tools.ToList());
         }
+
+        //Edit Tool GET
+        public IActionResult Edit(int id)
+        {
+            var thisTool = db.Tools.FirstOrDefault(x => x.ToolId == id);
+            return View(thisTool);
+        }
+        //Edit Tool POST
+        [HttpPost]
+        public IActionResult Edit(Tool tool)
+        {
+            db.Entry(tool).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            var thisTool = db.Tools.FirstOrDefault(x => x.ToolId == id);
+            db.Tools.Remove(thisTool);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

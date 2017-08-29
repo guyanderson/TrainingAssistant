@@ -39,5 +39,27 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
+        //Edit Operator GET
+        public IActionResult Edit(int id)
+        {
+            var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
+            return View(thisOperator);
+        }
+        //Edit Operator POST
+        [HttpPost]
+        public IActionResult Edit(Operator op)
+        {
+            db.Entry(op).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
+            db.Operators.Remove(thisOperator);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
