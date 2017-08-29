@@ -54,6 +54,13 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public IActionResult Delete(int id)
+        {
+            var thisArea = db.Areas.FirstOrDefault(x => x.AreaId == id);
+            db.Areas.Remove(thisArea);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
     }
 }
