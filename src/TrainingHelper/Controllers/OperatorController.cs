@@ -53,6 +53,8 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //Delete Operator
         public IActionResult Delete(int id)
         {
             var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);

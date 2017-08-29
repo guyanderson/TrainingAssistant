@@ -1,5 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TrainingHelper.Models.Operator
+
 @{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><strong>Edit this Operator:</strong> @Html.DisplayFor(model => model.Name)</h4>
+<hr />
+
+<br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.OperatorId)
+
+    @Html.LabelFor(model => model.Name, "Operator Name:")
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    <strong>Select a Shift for this Operator:</strong>
+    <select @Html.EditorFor(model => model.ShiftId)>
+        <option value="1">Day 1</option>
+        <option value="2">Day 2</option>
+        <option value="3">Night 1</option>
+        <option value="4">Night 2</option>
+    </select>
+    <br />
+    <br />
+    <input type="submit" value="Save" />
 }
