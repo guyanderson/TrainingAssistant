@@ -7,62 +7,27 @@ using System.Threading.Tasks;
 
 namespace TrainingHelper.Models
 {
+    [Table("Fab")]
     public class Fab
     {
         [Key]
         public int FabId { get; set; }
         
-        public class Shift
-        {
-            public int ShiftId { get; set; }
-            public string Name { get; set; }
-        }
-        public class Area
-        {
-            public int AreaId { get; set; }
-            public string Name { get; set; }
-        }
+        public Shift Shift { get; set; }
 
-        public class Bay
-        {
-            public int BayId { get; set; }
-            public string Name { get; set; }
-            public int TargetTrained { get; set; }
-            public int AreaId { get; set; }
-        }
+        public Area Area { get; set; }
 
-        public class Tool
-        {
-            public int ToolId { get; set; }
-            public string Name { get; set; }
-            public int BayId { get; set; }
+        public Bay Bay { get; set; }
 
+        public Tool Tool { get; set; }
 
-        }
+        public Operator Operator { get; set; }
 
-        public class Operator
-        {
-            public int OperatorId { get; set; }
-            public string Name { get; set; }
-            public int ShiftId { get; set; } 
+        public Certification Certification { get; set; }
 
-        }
+        //public virtual ICollection<Area> Area { get; set; }
 
-        public class Certification
-        {
-            public int CertificationId { get; set; }
-            public string Name { get; set; }
-            public int TargetTrained { get; set; }
-        }
-
-        public class OperatorCertification
-        {
-            public int OperatorId { get; set; }
-            public int CertificationId { get; set; }
-            public Operator Operator { get; set; }
-            public Certification certification { get; set; }
-        }
-
+        public Fab() { }
     }
 }
  

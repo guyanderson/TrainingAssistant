@@ -12,16 +12,23 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int ToolId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public int BayId { get; set; }
+        [Required]
+        public int CertificationId { get; set; }
+        public virtual Bay Bay { get; set; }
+        public virtual Certification Certification { get; set; }
 
 
         public Tool() { }
 
-        public Tool(string name, int bayId)
+        public Tool(string name, int bayId, int certificationId)
         {
             Name = name;
             BayId = bayId;
+            CertificationId = certificationId;
         }
     }
 }

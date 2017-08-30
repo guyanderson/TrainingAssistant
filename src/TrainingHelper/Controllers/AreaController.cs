@@ -28,9 +28,9 @@ namespace TrainingHelper.Controllers
         }
         //Create new Operator POST
         [HttpPost]
-        public IActionResult Create(string name)
+        public IActionResult Create(string name, int fabId)
         {
-            Area newArea = new Area(name);
+            Area newArea = new Area(name, fabId);
             db.Areas.Add(newArea);
             db.SaveChanges();
             return RedirectToAction("Index");

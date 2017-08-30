@@ -12,11 +12,14 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int BayId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public int TargetTrained { get; set; }
+        [Required]
         public int AreaId { get; set; }
-
-        public virtual ICollection<Area> Area { get; set; }
+        public virtual Area Area { get; set; }
+        public virtual ICollection<Tool> Tool { get; set; }
 
         public Bay() { }
 

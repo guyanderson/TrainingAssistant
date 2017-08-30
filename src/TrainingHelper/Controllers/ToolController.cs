@@ -32,9 +32,9 @@ namespace TrainingHelper.Controllers
         }
         //Create new Operator POST
         [HttpPost]
-        public IActionResult Create(string name, int bayId)
+        public IActionResult Create(string name, int bayId, int certificationId)
         {
-            Tool newTool = new Tool(name, bayId);
+            Tool newTool = new Tool(name, bayId, certificationId);
             db.Tools.Add(newTool);
             db.SaveChanges();
             return RedirectToAction("Index");
