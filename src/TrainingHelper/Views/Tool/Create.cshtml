@@ -15,9 +15,15 @@
 
     <br />
     @Html.HiddenFor(model => model.ToolId)
-
     @Html.LabelFor(model => model.Name, "Tool Name:")
     @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    <strong>What Certification is required to run this tool?</strong>
+    <select @Html.EditorFor(model => model.CertificationId)>
+        <option value="1">UT</option>
+        <option value="2">5500</option>
+    </select>
     <br />
     <br />
     <strong>Select the Bay that this Tool will be in:</strong>

@@ -13,20 +13,6 @@ namespace TrainingHelper.Models
         [Key]
         public int FabId { get; set; }
         
-        public Shift Shift { get; set; }
-
-        public Area Area { get; set; }
-
-        public Bay Bay { get; set; }
-
-        public Tool Tool { get; set; }
-
-        public Operator Operator { get; set; }
-
-        public Certification Certification { get; set; }
-
-        //public virtual ICollection<Area> Area { get; set; }
-
         public Fab() { }
     }
 }

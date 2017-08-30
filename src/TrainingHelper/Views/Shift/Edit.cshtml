@@ -1,0 +1,20 @@
+﻿@model TrainingHelper.Models.Shift
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><strong>Edit this Shift:</strong> @Html.DisplayFor(model => model.Name)</h4>
+<hr />
+
+<br />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.ShiftId)
+    @Html.LabelFor(model => model.Name, "Shift Name:")
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    <input type="submit" value="Save" />
+}

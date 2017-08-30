@@ -214,8 +214,10 @@ C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\Train
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\OperatorController.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\ShiftController.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Controllers\ToolController.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830180614_initial.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830180614_initial.Designer.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830201429_initial.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830201429_initial.Designer.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830211713_removeFabFromShift.cs
+C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\20170830211713_removeFabFromShift.Designer.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Migrations\TrainingHelperDbContextModelSnapshot.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Area.cs
 C:\Users\epicodus\Documents\Visual Studio 2015\Projects\TrainingHelper\src\TrainingHelper\Models\Bay.cs

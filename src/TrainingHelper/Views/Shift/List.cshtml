@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TrainingHelper.Models.Shift>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h4>Here's the list of all Shifts for the Fab. Choose one to Edit or Delete.</h4>
+<hr />
+
+<div class="row">
+    <ul>
+        @foreach (var x in Model)
+        {
+            <li>
+                @Html.DisplayFor(modelItem => x.Name) |
+                @Html.ActionLink("Edit", "Edit", new { id = x.ShiftId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = x.ShiftId })
+            </li>
+        }
+    </ul>
+</div>

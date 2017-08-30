@@ -20,14 +20,16 @@
     @Html.EditorFor(model => model.Name)
     <br />
     <br />
+    @Html.LabelFor(model => model.TargetTrained, "What's the minium number of operators needed to be certified to run all tools in this bay?")
+    @Html.EditorFor(model => model.TargetTrained)
+    <br />
+    <br />
     <strong>Select a Shift for this operator:</strong>
     <select @Html.EditorFor(model => model.AreaId)>
-        <option value="2">Photo</option>
-        <option value="3">Plasma Etch</option>
-        <option value="4">Wet Etch</option>
-        <option value="5">Implant</option>
-        <option value="6">Metals</option>
-        <option value="7">Diffusion</option>
+        <option value="1">Photo</option>
+        <option value="2">Plasma Etch</option>
+        <option value="3">Wet Etch</option>
+        <option value="4">Implant</option>
     </select>
     <br />
     <br />

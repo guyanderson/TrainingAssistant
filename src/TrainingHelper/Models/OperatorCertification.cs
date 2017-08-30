@@ -11,7 +11,7 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int OperatorCertificationId { get; set; }
-        public Operator Operator { get; set; }
-        public Certification Certification { get; set; }
+        public virtual Operator Operator { get; set; }
+        public virtual Certification Certification { get; set; }
     }
 }

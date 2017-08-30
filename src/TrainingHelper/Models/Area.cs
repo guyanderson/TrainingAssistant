@@ -12,19 +12,14 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int AreaId { get; set; }
-        [Required]
         public string Name { get; set; }
-        
-        public int FabId { get; set; }
-        public virtual Fab Fab { get; set; }
         public virtual ICollection<Bay> Bay { get; set; }
 
         public Area() { }
 
-        public Area(string name, int fabId)
+        public Area(string name)
         {
             Name = name;
-            FabId = FabId;
         }
     }
 }

@@ -15,16 +15,13 @@ namespace TrainingHelper.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public int FabId { get; set; }
-        public virtual Fab Fab { get; set; }
         public virtual ICollection<Operator> Operator { get; set; }
 
         public Shift() { }
 
-        public Shift(string name, int fabId)
+        public Shift(string name)
         {
             Name = name;
-            FabId = fabId;
         }
     }
 }

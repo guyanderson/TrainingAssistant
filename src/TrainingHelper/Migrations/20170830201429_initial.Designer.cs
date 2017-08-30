@@ -8,9 +8,10 @@ using TrainingHelper.Models;
 namespace TrainingHelper.Migrations
 {
     [DbContext(typeof(TrainingHelperDbContext))]
-    partial class TrainingHelperDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170830201429_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -111,10 +112,14 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("ShiftId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("FabId");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("ShiftId");
+
+                    b.HasIndex("FabId");
 
                     b.ToTable("Shifts");
                 });
@@ -165,6 +170,14 @@ namespace TrainingHelper.Migrations
                     b.HasOne("TrainingHelper.Models.Operator", "Operator")
                         .WithMany("OperatorCertification")
                         .HasForeignKey("OperatorId");
+                });
+
+            modelBuilder.Entity("TrainingHelper.Models.Shift", b =>
+                {
+                    b.HasOne("TrainingHelper.Models.Fab", "Fab")
+                        .WithMany()
+                        .HasForeignKey("FabId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TrainingHelper.Models.Tool", b =>
