@@ -20,7 +20,6 @@ namespace TrainingHelper.Controllers
             return View(db.Areas.ToList());
         }
 
-
         //Create new Area GET
         public IActionResult Create()
         {
