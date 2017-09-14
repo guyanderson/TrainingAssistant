@@ -13,9 +13,11 @@
     <ul>
         @foreach (var x in Model)
         {
-            <li>
-                @Html.DisplayFor(modelItem => x.Name)
-            </li>
+            <div class="row">
+                <div class="panel panel-success">
+                    <div class="panel-heading">@Html.DisplayFor(modelItem => x.Name)</div>
+                </div>
+            </div>
         }
     </ul>
 </div>
