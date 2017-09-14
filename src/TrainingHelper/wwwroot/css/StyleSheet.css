@@ -5,10 +5,23 @@ li {
 list-style: none;
 }
 
-.panel-heading {
+.panel-heading.custom {
   display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  min-width: 120px;
 }
 
-.panel {
+.panel.custom {
   display: inline-block;
+  margin-bottom: 10px;
+  min-width: 120px;
+}
+
+.panel-success.custom {
+  border: 2px solid #3c763d;
+}
+
+.panel-info.custom {
+  border: 2px solid #31708f;
 }
