@@ -10,19 +10,6 @@ namespace TrainingHelper.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Areas",
-                columns: table => new
-                {
-                    AreaId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Areas", x => x.AreaId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Certifications",
                 columns: table => new
                 {
@@ -49,6 +36,46 @@ namespace TrainingHelper.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Areas",
+                columns: table => new
+                {
+                    AreaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FabId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Areas", x => x.AreaId);
+                    table.ForeignKey(
+                        name: "FK_Areas_Fab_FabId",
+                        column: x => x.FabId,
+                        principalTable: "Fab",
+                        principalColumn: "FabId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shifts",
+                columns: table => new
+                {
+                    ShiftId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FabId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shifts", x => x.ShiftId);
+                    table.ForeignKey(
+                        name: "FK_Shifts_Fab_FabId",
+                        column: x => x.FabId,
+                        principalTable: "Fab",
+                        principalColumn: "FabId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bays",
                 columns: table => new
                 {
@@ -70,22 +97,22 @@ namespace TrainingHelper.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shifts",
+                name: "Operators",
                 columns: table => new
                 {
-                    ShiftId = table.Column<int>(nullable: false)
+                    OperatorId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    FabId = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    ShiftId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shifts", x => x.ShiftId);
+                    table.PrimaryKey("PK_Operators", x => x.OperatorId);
                     table.ForeignKey(
-                        name: "FK_Shifts_Fab_FabId",
-                        column: x => x.FabId,
-                        principalTable: "Fab",
-                        principalColumn: "FabId",
+                        name: "FK_Operators_Shifts_ShiftId",
+                        column: x => x.ShiftId,
+                        principalTable: "Shifts",
+                        principalColumn: "ShiftId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -117,50 +144,49 @@ namespace TrainingHelper.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Operators",
+                name: "OperatorCertifications",
                 columns: table => new
                 {
-                    OperatorId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    ShiftId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Operators", x => x.OperatorId);
-                    table.ForeignKey(
-                        name: "FK_Operators_Shifts_ShiftId",
-                        column: x => x.ShiftId,
-                        principalTable: "Shifts",
-                        principalColumn: "ShiftId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OperatorsCertification",
-                columns: table => new
-                {
-                    OperatorCertificationId = table.Column<int>(nullable: false)
+                    OperatorCertificationsId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CertificationId = table.Column<int>(nullable: true),
-                    OperatorId = table.Column<int>(nullable: true)
+                    OperatorCertificationsId1 = table.Column<int>(nullable: true),
+                    OperatorId = table.Column<int>(nullable: true),
+                    ShiftId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OperatorsCertification", x => x.OperatorCertificationId);
+                    table.PrimaryKey("PK_OperatorCertifications", x => x.OperatorCertificationsId);
                     table.ForeignKey(
-                        name: "FK_OperatorsCertification_Certifications_CertificationId",
+                        name: "FK_OperatorCertifications_Certifications_CertificationId",
                         column: x => x.CertificationId,
                         principalTable: "Certifications",
                         principalColumn: "CertificationId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OperatorsCertification_Operators_OperatorId",
+                        name: "FK_OperatorCertifications_OperatorCertifications_OperatorCertificationsId1",
+                        column: x => x.OperatorCertificationsId1,
+                        principalTable: "OperatorCertifications",
+                        principalColumn: "OperatorCertificationsId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OperatorCertifications_Operators_OperatorId",
                         column: x => x.OperatorId,
                         principalTable: "Operators",
                         principalColumn: "OperatorId",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_OperatorCertifications_Shifts_ShiftId",
+                        column: x => x.ShiftId,
+                        principalTable: "Shifts",
+                        principalColumn: "ShiftId",
+                        onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Areas_FabId",
+                table: "Areas",
+                column: "FabId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bays_AreaId",
@@ -173,14 +199,24 @@ namespace TrainingHelper.Migrations
                 column: "ShiftId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OperatorsCertification_CertificationId",
-                table: "OperatorsCertification",
+                name: "IX_OperatorCertifications_CertificationId",
+                table: "OperatorCertifications",
                 column: "CertificationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OperatorsCertification_OperatorId",
-                table: "OperatorsCertification",
+                name: "IX_OperatorCertifications_OperatorCertificationsId1",
+                table: "OperatorCertifications",
+                column: "OperatorCertificationsId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OperatorCertifications_OperatorId",
+                table: "OperatorCertifications",
                 column: "OperatorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OperatorCertifications_ShiftId",
+                table: "OperatorCertifications",
+                column: "ShiftId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shifts_FabId",
@@ -201,7 +237,7 @@ namespace TrainingHelper.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "OperatorsCertification");
+                name: "OperatorCertifications");
 
             migrationBuilder.DropTable(
                 name: "Tools");

@@ -17,7 +17,7 @@ namespace TrainingHelper.Models
         [Required]
         public int TargetTrained { get; set; }
         public virtual ICollection<Tool> Tool { get; set; }
-        public virtual ICollection<OperatorCertification> OperatorCertification { get; set; }
+        public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
 
         public Certification() { }
 
@@ -26,6 +26,11 @@ namespace TrainingHelper.Models
             Name = name;
             TargetTrained = target;
         }
+
+        //public Certification()
+        //{
+        //    this.Operators = new HashSet<Operator>();
+        //}
 
     }
 }

@@ -12,7 +12,9 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int FabId { get; set; }
-        
+        public virtual ICollection<Area> Area { get; set; }
+        public virtual ICollection<Shift> Shift { get; set; }
+
         public Fab() { }
     }
 }

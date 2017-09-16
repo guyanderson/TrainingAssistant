@@ -21,9 +21,14 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("AreaId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<int>("FabId");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("AreaId");
+
+                    b.HasIndex("FabId");
 
                     b.ToTable("Areas");
                 });
@@ -77,7 +82,8 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("OperatorId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<int>("ShiftId");
 
@@ -88,22 +94,30 @@ namespace TrainingHelper.Migrations
                     b.ToTable("Operators");
                 });
 
-            modelBuilder.Entity("TrainingHelper.Models.OperatorCertification", b =>
+            modelBuilder.Entity("TrainingHelper.Models.OperatorCertifications", b =>
                 {
-                    b.Property<int>("OperatorCertificationId")
+                    b.Property<int>("OperatorCertificationsId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("CertificationId");
 
+                    b.Property<int?>("OperatorCertificationsId1");
+
                     b.Property<int?>("OperatorId");
 
-                    b.HasKey("OperatorCertificationId");
+                    b.Property<int?>("ShiftId");
+
+                    b.HasKey("OperatorCertificationsId");
 
                     b.HasIndex("CertificationId");
 
+                    b.HasIndex("OperatorCertificationsId1");
+
                     b.HasIndex("OperatorId");
 
-                    b.ToTable("OperatorsCertification");
+                    b.HasIndex("ShiftId");
+
+                    b.ToTable("OperatorCertifications");
                 });
 
             modelBuilder.Entity("TrainingHelper.Models.Shift", b =>
@@ -111,10 +125,14 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("ShiftId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("FabId");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
                     b.HasKey("ShiftId");
+
+                    b.HasIndex("FabId");
 
                     b.ToTable("Shifts");
                 });
@@ -140,6 +158,14 @@ namespace TrainingHelper.Migrations
                     b.ToTable("Tools");
                 });
 
+            modelBuilder.Entity("TrainingHelper.Models.Area", b =>
+                {
+                    b.HasOne("TrainingHelper.Models.Fab", "Fab")
+                        .WithMany("Area")
+                        .HasForeignKey("FabId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("TrainingHelper.Models.Bay", b =>
                 {
                     b.HasOne("TrainingHelper.Models.Area", "Area")
@@ -151,20 +177,36 @@ namespace TrainingHelper.Migrations
             modelBuilder.Entity("TrainingHelper.Models.Operator", b =>
                 {
                     b.HasOne("TrainingHelper.Models.Shift", "Shift")
-                        .WithMany("Operator")
+                        .WithMany()
                         .HasForeignKey("ShiftId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TrainingHelper.Models.OperatorCertification", b =>
+            modelBuilder.Entity("TrainingHelper.Models.OperatorCertifications", b =>
                 {
                     b.HasOne("TrainingHelper.Models.Certification", "Certification")
-                        .WithMany("OperatorCertification")
+                        .WithMany("OperatorCertifications")
                         .HasForeignKey("CertificationId");
 
-                    b.HasOne("TrainingHelper.Models.Operator", "Operator")
-                        .WithMany("OperatorCertification")
+                    b.HasOne("TrainingHelper.Models.OperatorCertifications", "Operator")
+                        .WithMany()
+                        .HasForeignKey("OperatorCertificationsId1");
+
+                    b.HasOne("TrainingHelper.Models.Operator")
+                        .WithMany("OperatorCertifications")
                         .HasForeignKey("OperatorId");
+
+                    b.HasOne("TrainingHelper.Models.Shift")
+                        .WithMany("Operator")
+                        .HasForeignKey("ShiftId");
+                });
+
+            modelBuilder.Entity("TrainingHelper.Models.Shift", b =>
+                {
+                    b.HasOne("TrainingHelper.Models.Fab", "Fab")
+                        .WithMany("Shift")
+                        .HasForeignKey("FabId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TrainingHelper.Models.Tool", b =>

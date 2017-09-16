@@ -13,12 +13,13 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int OperatorId { get; set; }
-        
+        [Required]
         public string Name { get; set; }
-        
+        [Required]
         public int ShiftId { get; set; }
+
         public virtual Shift Shift { get; set; }
-        public virtual ICollection<OperatorCertification> OperatorCertification { get; set; }
+        public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
 
         public Operator() { }
 
@@ -27,6 +28,11 @@ namespace TrainingHelper.Models
             Name = name;
             ShiftId = shiftId;
         }
+
+        //public Operator()
+        //{
+        //    this.Certifications = new HashSet<Certification>();
+        //}
     }
 
 }

@@ -15,7 +15,9 @@ namespace TrainingHelper.Models
         [Required]
         public string Name { get; set; }
         [Required]
-        public virtual ICollection<Operator> Operator { get; set; }
+        public int FabId { get; set; }
+        public virtual Fab Fab { get; set; }
+        public virtual ICollection<OperatorCertifications> Operator { get; set; }
 
         public Shift() { }
 
