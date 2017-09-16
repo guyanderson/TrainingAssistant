@@ -16,6 +16,7 @@ namespace TrainingHelper.Models
         public string Name { get; set; }
         [Required]
         public int FabId { get; set; }
+
         public virtual Fab Fab { get; set; }
         public virtual ICollection<OperatorCertifications> Operator { get; set; }
 

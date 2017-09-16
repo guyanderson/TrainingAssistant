@@ -6,22 +6,32 @@ list-style: none;
 }
 
 .panel-heading.custom {
-  display: inline-block;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  min-width: 120px;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-width: 120px;
 }
 
 .panel.custom {
-  display: inline-block;
-  margin-bottom: 10px;
-  min-width: 120px;
+    display: inline-block;
+    margin-bottom: 10px;
+    min-width: 120px;
 }
 
 .panel-success.custom {
-  border: 2px solid #3c763d;
+    border: 2px solid #3c763d;
 }
 
 .panel-info.custom {
-  border: 2px solid #31708f;
+    border: 2px solid #31708f;
+}
+
+.btn.custom {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #3c763d;
+}
+
+.btn-info.custom {
+    border: 1px solid #31708f;
 }

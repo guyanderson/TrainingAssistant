@@ -18,6 +18,7 @@ namespace TrainingHelper.Models
         public int TargetTrained { get; set; }
         [Required]
         public int AreaId { get; set; }
+
         public virtual Area Area { get; set; }
         public virtual ICollection<Tool> Tool { get; set; }
 

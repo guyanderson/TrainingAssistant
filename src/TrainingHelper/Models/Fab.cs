@@ -12,6 +12,8 @@ namespace TrainingHelper.Models
     {
         [Key]
         public int FabId { get; set; }
+        public string Name { get; set; }
+
         public virtual ICollection<Area> Area { get; set; }
         public virtual ICollection<Shift> Shift { get; set; }
 

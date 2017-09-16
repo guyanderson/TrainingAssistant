@@ -16,6 +16,7 @@ namespace TrainingHelper.Models
         public string Name { get; set; }
         [Required]
         public int TargetTrained { get; set; }
+
         public virtual ICollection<Tool> Tool { get; set; }
         public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
 

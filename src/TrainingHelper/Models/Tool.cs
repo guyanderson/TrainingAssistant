@@ -18,6 +18,7 @@ namespace TrainingHelper.Models
         public int BayId { get; set; }
         [Required]
         public int CertificationId { get; set; }
+
         public virtual Bay Bay { get; set; }
         public virtual Certification Certification { get; set; }
 

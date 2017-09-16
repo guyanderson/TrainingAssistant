@@ -14,9 +14,7 @@
         @foreach (var x in Model)
         {
             <div class="row">
-                <div class="panel panel-info custom">
-                    <div class="panel-heading custom">@Html.DisplayFor(modelItem => x.Name)</div>
-                </div>
+                <button type="button" class="btn btn-info custom">@Html.DisplayFor(modelItem => x.Name)</button>
             </div>
         }
     </ul>
