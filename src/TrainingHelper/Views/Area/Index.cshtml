@@ -10,14 +10,11 @@
 <hr />
 
 <div class="row">
-    <ul>
         @foreach (var x in Model)
         {
             <div class="row">
-                <button type="button" class="btn btn-success custom">@Html.DisplayFor(modelItem => x.Name)</button>
+                <button type="button" class="btn btn-success custom">@Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId })</button>
             </div>
         }
-    </ul>
 </div>
-
 
