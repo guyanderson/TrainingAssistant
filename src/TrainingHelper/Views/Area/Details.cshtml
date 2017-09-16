@@ -8,9 +8,11 @@
 <h3>Here are the Bays in the ... Area.</h3>
 
 <ul>
-    @foreach (var listItem in Model)
+    @foreach (var x in Model)
     {
-        <li>@Html.DisplayFor(modelItem => listItem.Name)</li>
-        //<li>@Html.ActionLink(listItem.Name, "Details", "Experience", new { id = listItem.LocationId })</li>
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
+        </div> 
     }
 </ul>
+
