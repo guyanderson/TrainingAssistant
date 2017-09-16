@@ -61,9 +61,16 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details()
+        //public IActionResult Details()
+        //{
+        //    return View(db.Bays.Include(x => x.Area).ToList());
+        //}
+
+
+        public IActionResult Details(int id)
         {
-            return View(db.Bays.Include(x => x.Area).ToList());
+            List<Bay> thisBay = db.Bays.Where(x => x.AreaId == id).ToList();
+            return View(thisBay);
         }
 
     }
