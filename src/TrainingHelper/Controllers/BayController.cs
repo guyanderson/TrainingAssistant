@@ -59,6 +59,13 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //list all Tools in selected Bay
+        public IActionResult Details(int id)
+        {
+            List<Tool> thisTool = db.Tools.Where(x => x.BayId == id).ToList();
+            return View(thisTool);
+        }
+
 
     }
 }

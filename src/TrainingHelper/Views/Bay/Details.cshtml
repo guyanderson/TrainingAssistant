@@ -1,0 +1,18 @@
+﻿@model IEnumerable<TrainingHelper.Models.Tool>
+@using TrainingHelper.ViewModels
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Here are the Tools in the ... Bay.</h3>
+
+<ul>
+    @foreach (var x in Model)
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+        </div>
+    }
+</ul>

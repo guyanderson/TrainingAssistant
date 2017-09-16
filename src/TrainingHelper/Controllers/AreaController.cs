@@ -7,7 +7,7 @@ using TrainingHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using TrainingHelper.ViewModels;
 
 namespace TrainingHelper.Controllers
 {
@@ -60,17 +60,13 @@ namespace TrainingHelper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
-        //public IActionResult Details()
-        //{
-        //    return View(db.Bays.Include(x => x.Area).ToList());
-        //}
-
-
+        //list all Bays in selected Area
         public IActionResult Details(int id)
         {
-            List<Bay> thisBay = db.Bays.Where(x => x.AreaId == id).ToList();
-            return View(thisBay);
+            Area area = db.Areas.FirstOrDefault(x => x.AreaId == id);
+            List<Bay> bays = db.Bays.Where(x => x.AreaId == id).ToList();
+            AreaDetailVM VM = new AreaDetailVM(area, bays);
+            return View(VM);
         }
 
     }

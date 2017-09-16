@@ -1,18 +1,21 @@
-﻿@model IEnumerable<TrainingHelper.Models.Bay>
+﻿@model TrainingHelper.ViewModels.AreaDetailVM
+@using TrainingHelper.ViewModels
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Here are the Bays in the ... Area.</h3>
+<h3>Here are the Bays in the @Model.Area.Name Area.</h3>
+
+
 
 <ul>
-    @foreach (var x in Model)
+    @foreach (var x in Model.Bay)
     {
         <div class="row">
-            @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
-        </div> 
+            @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+        </div>
     }
 </ul>
 
