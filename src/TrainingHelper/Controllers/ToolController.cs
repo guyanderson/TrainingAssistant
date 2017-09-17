@@ -7,7 +7,7 @@ using TrainingHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using TrainingHelper.ViewModels;
 
 namespace TrainingHelper.Controllers
 {
@@ -61,6 +61,15 @@ namespace TrainingHelper.Controllers
             db.Tools.Remove(thisTool);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //Certification for in selected Tool
+        public IActionResult Details(int id)
+        {
+            Tool tool = db.Tools.FirstOrDefault(x => x.ToolId == id);
+            Certification certification = db.Certifications.FirstOrDefault(x => x.CertificationId == tool.CertificationId);
+            ToolDetailVM VM = new ToolDetailVM(tool, certification);
+            return View(VM);
         }
     }
 }
