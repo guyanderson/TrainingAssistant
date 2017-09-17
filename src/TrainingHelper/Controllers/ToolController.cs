@@ -28,9 +28,13 @@ namespace TrainingHelper.Controllers
         //Get Create Tool View
         public IActionResult Create()
         {
-            return View();
+            Tool tool = new Tool();
+            List<Bay> bays = db.Bays.ToList();
+            List<Certification> certifications = db.Certifications.ToList();
+            ToolCreateVM VM = new ToolCreateVM(tool, bays, certifications);
+            return View(VM);
         }
-        //Create new Operator POST
+        //Create new Tool POST
         [HttpPost]
         public IActionResult Create(string name, int bayId, int certificationId)
         {

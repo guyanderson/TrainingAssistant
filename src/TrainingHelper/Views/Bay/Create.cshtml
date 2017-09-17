@@ -1,5 +1,4 @@
 ﻿@model TrainingHelper.ViewModels.BayCreateVM
-@using TrainingHelper.Models
 
 @{
     ViewData["Title"] = "Create";
@@ -8,11 +7,9 @@
 
 <h4>Create a new Bay </h4>
 <hr />
-
 <br />
 
 <form method="post" asp-action="Create" asp-controller="Bay">
-
     <br />
     @Html.HiddenFor(Model => Model.Bay.BayId)
 
@@ -25,15 +22,14 @@
     <br />
     <br />
     <strong>Select an Area for this Bay:</strong>
-
     <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
         @foreach (var x in Model.Area)
         {
             <option value=@x.AreaId>@x.Name</option>
         }
     </select>
-
     <br />
     <br />
     <input type="submit" value="Save" />
 </form>
+ 
