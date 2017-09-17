@@ -22,7 +22,10 @@ namespace TrainingHelper.Controllers
         //Create new Bay
         public IActionResult Create()
         {
-            return View();
+            Bay bay = new Bay();
+            List<Area> areas = db.Areas.ToList();
+            BayCreateVM VM = new BayCreateVM(bay, areas);
+            return View(VM);
         }
 
         [HttpPost]
