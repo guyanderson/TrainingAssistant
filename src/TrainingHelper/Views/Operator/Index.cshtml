@@ -9,13 +9,9 @@
 <h4>Here is a list of all Operators in the Fab.</h4>
 <hr />
 
-<div class="row">
-    <ul>
-        @foreach (var x in Model)
-        {
-            <div class="row">
-                <button type="button" class="btn btn-info custom">@Html.DisplayFor(modelItem => x.Name)</button>
-            </div>
-        }
-    </ul>
-</div>
+@foreach (var x in Model)
+{
+    <div class="row">
+        @Html.ActionLink(x.Name, "Details", "Operator", new { id = x.OperatorId }, new { @class = "btn btn-success custom" })
+    </div>
+}

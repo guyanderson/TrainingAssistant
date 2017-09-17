@@ -7,6 +7,7 @@ using TrainingHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using TrainingHelper.ViewModels;
 
 namespace TrainingHelper.Controllers
 {
@@ -60,10 +61,12 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
         //list all Tools in selected Bay
-        public IActionResult Details(int id)
+         public IActionResult Details(int id)
         {
-            List<Tool> thisTool = db.Tools.Where(x => x.BayId == id).ToList();
-            return View(thisTool);
+            Bay bay = db.Bays.FirstOrDefault(x => x.BayId == id);
+            List<Tool>tools = db.Tools.Where(x => x.BayId == id).ToList();
+            BayDetailVM VM = new BayDetailVM(bay,tools);
+            return View(VM);
         }
 
 

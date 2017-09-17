@@ -9,13 +9,12 @@
 <h4>Here is a list of all Areas in the Fab.</h4>
 <hr />
 
-<div class="row">
-        @foreach (var x in Model)
-        {
-            <div class="row">
-                @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
-            </div>
-        }
-</div>
+@foreach (var x in Model)
+{
+    <div class="row">
+        @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
+    </div>
+}
+
 
 

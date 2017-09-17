@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingHelper.Models.Tool>
+﻿@model TrainingHelper.ViewModels.BayDetailVM
 @using TrainingHelper.ViewModels
 
 @{
@@ -6,13 +6,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Here are the Tools in the ... Bay.</h3>
+<h3>Here are the Tools located in @Model.Bay.Name.</h3>
 
-<ul>
-    @foreach (var x in Model)
-    {
-        <div class="row">
-            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-        </div>
-    }
-</ul>
+@foreach (var x in Model.Tool)
+{
+    <div class="row">
+        @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-success custom" })
+    </div>
+}

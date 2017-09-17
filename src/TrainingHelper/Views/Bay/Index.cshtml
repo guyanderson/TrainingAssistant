@@ -9,15 +9,9 @@
 <h4>Here is a list of all Bays in the Fab.</h4>
 <hr />
 
-<div class="row">
-    <ul>
-        @foreach (var x in Model)
-        {
-            <li>
-                <div class="row">
-                    <button type="button" class="btn btn-success custom">@Html.DisplayFor(modelItem => x.Name)</button>
-                </div>
-            </li>
-        }
-    </ul>
-</div>
+@foreach (var x in Model)
+{
+    <div class="row">
+        @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+    </div>
+}

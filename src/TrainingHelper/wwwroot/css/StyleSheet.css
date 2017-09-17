@@ -29,6 +29,7 @@ list-style: none;
 .btn.custom {
     margin-bottom: 5px;
     padding-bottom: 5px;
+    margin-left: 15px;
     border: 1px solid #3c763d;
 }
 
@@ -36,6 +37,3 @@ list-style: none;
     border: 1px solid #31708f;
 }
 
-a {
-    color: white;
-}
