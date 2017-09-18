@@ -7,18 +7,19 @@
 
 <h4>Create new Certification</h4>
 <hr />
-
 <br />
 
 <form method="post" asp-action="Create" asp-controller="Certification">
-
     <br />
     @Html.HiddenFor(model => model.CertificationId)
 
     @Html.LabelFor(model => model.Name, "Certification Name:")
     @Html.EditorFor(model => model.Name)
-
+    <br />
+    <br />
+    @Html.LabelFor(Model => Model.TargetTrained, "What's the minium number of operators needed to have this certification?")
+    @Html.EditorFor(Model => Model.TargetTrained)
+    <br />
     <br />
     <input type="submit" value="Save" />
 </form>
-<br />

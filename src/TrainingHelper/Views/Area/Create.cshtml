@@ -9,13 +9,11 @@
 <hr />
 <br />
 <form method="post" asp-action="Create" asp-controller="Area">
- 
-    <br />
     @Html.HiddenFor(model => model.AreaId)
 
     @Html.LabelFor(model => model.Name, "Area Name:")
     @Html.EditorFor(model => model.Name)
-
+    <br />
     <br />
     <input type="submit" value="Save" />
 </form>

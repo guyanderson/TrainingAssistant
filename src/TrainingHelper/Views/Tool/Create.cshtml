@@ -19,12 +19,12 @@
     <br />
     <br />
     <strong>What Certification is required to run this tool?</strong>
-    <select @Html.EditorFor(model => model.Tool.CertificationId, "", "CertificationId")>
-        @foreach (var x in Model.Certification)
-        {
-            <option value=@x.CertificationId>@x.Name</option>
-        }
-    </select>
+        <select @Html.EditorFor(model => model.Tool.CertificationId, "", "CertificationId")>
+            @foreach (var x in Model.Certification)
+            {
+                <option value=@x.CertificationId>@x.Name</option>
+            }
+        </select>
     <br />
     <br />
     <strong>Select the Bay that this Tool will be in:</strong>

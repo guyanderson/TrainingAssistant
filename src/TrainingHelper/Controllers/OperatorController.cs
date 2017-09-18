@@ -7,7 +7,7 @@ using TrainingHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using TrainingHelper.ViewModels;
 
 namespace TrainingHelper.Controllers
 {
@@ -26,7 +26,10 @@ namespace TrainingHelper.Controllers
         //Create new Operator GET
         public IActionResult Create()
         {
-            return View();
+            Operator oper = new Operator();
+            List<Shift> shifts = db.Shifts.ToList();
+            OperatorCreateVM VM = new OperatorCreateVM(oper, shifts);
+            return View(VM);
         }
 
         //Create new Operator POST

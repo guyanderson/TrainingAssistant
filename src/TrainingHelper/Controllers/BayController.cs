@@ -29,9 +29,9 @@ namespace TrainingHelper.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string name, int target, int areaId)
+        public IActionResult Create(string name, int targetTrained, int areaId)
         {
-            Bay newBay = new Bay(name, target, areaId);
+            Bay newBay = new Bay(name, targetTrained, areaId);
             db.Bays.Add(newBay);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -21,10 +21,10 @@
     @Html.EditorFor(Model => Model.Bay.TargetTrained, "", "TargetTrained")
     <br />
     <br />
-    <strong>Select an Area for this Bay:</strong>
+    <strong>Select an Area for this Bay:</strong><br>
     <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
         @foreach (var x in Model.Area)
-        {
+            {
             <option value=@x.AreaId>@x.Name</option>
         }
     </select>
@@ -33,3 +33,12 @@
     <input type="submit" value="Save" />
 </form>
  
+
+
+
+@*
+    @foreach (var x in Model.Area)
+    {
+            @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
+    }
+*@
