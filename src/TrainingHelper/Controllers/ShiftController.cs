@@ -46,9 +46,9 @@ namespace TrainingHelper.Controllers
         }
         //Edit Shift POST
         [HttpPost]
-        public IActionResult Edit(Shift area)
+        public IActionResult Edit(Shift shift)
         {
-            db.Entry(area).State = EntityState.Modified;
+            db.Entry(shift).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

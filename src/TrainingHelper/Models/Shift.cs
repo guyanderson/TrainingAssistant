@@ -25,6 +25,7 @@ namespace TrainingHelper.Models
         public Shift(string name)
         {
             Name = name;
+            FabId = 1;
         }
     }
 }

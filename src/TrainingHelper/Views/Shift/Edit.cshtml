@@ -7,11 +7,11 @@
 
 <h4><strong>Edit this Shift:</strong> @Html.DisplayFor(model => model.Name)</h4>
 <hr />
-
 <br />
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.ShiftId)
+    @Html.HiddenFor(model => model.FabId)
     @Html.LabelFor(model => model.Name, "Shift Name:")
     @Html.EditorFor(model => model.Name)
     <br />

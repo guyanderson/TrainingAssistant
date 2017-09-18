@@ -1,6 +1,5 @@
 ﻿@model TrainingHelper.Models.Shift
 
-
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,11 +7,9 @@
 
 <h4>Create a new Shift </h4>
 <hr />
-
 <br />
 
 <form method="post" asp-action="Create" asp-controller="Shift">
-
     <br />
     @Html.HiddenFor(model => model.ShiftId)
     @Html.LabelFor(model => model.Name, "Shift Name:")
