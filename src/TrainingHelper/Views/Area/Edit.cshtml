@@ -11,6 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.AreaId)
+    @Html.HiddenFor(model => model.FabId)
 
     @Html.LabelFor(model => model.Name, "Area Name:")
     @Html.EditorFor(model => model.Name)
