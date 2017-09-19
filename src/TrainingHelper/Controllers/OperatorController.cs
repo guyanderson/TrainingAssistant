@@ -46,7 +46,9 @@ namespace TrainingHelper.Controllers
         public IActionResult Edit(int id)
         {
             var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
-            return View(thisOperator);
+            List<Shift> shifts = db.Shifts.ToList();
+            OperatorCreateVM VM = new OperatorCreateVM(thisOperator, shifts);
+            return View(VM);
         }
         //Edit Operator POST
         [HttpPost]
