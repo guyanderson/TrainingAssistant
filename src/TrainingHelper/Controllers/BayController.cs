@@ -46,7 +46,9 @@ namespace TrainingHelper.Controllers
         public IActionResult Edit(int id)
         {
             var thisBay = db.Bays.FirstOrDefault(x => x.BayId == id);
-            return View(thisBay);
+            List<Area> areas = db.Areas.ToList();
+            BayCreateVM VM = new BayCreateVM(thisBay, areas);
+            return View(VM);
         }
         //Edit Bay POST
         [HttpPost]
