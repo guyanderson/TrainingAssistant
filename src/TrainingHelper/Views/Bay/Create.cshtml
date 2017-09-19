@@ -22,12 +22,10 @@
     <br />
     <br />
     <strong>Select an Area for this Bay:</strong><br>
-    <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
-        @foreach (var x in Model.Area)
-            {
-            <option value=@x.AreaId>@x.Name</option>
-        }
-    </select>
+    @foreach (var x in Model.Area)
+    {
+        @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
+    }
     <br />
     <br />
     <input type="submit" value="Save" />
@@ -37,8 +35,11 @@
 
 
 @*
-    @foreach (var x in Model.Area)
-    {
-            @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
-    }
+
+        <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
+        @foreach (var x in Model.Area)
+            {
+            <option value=@x.AreaId>@x.Name</option>
+        }
+    </select>
 *@

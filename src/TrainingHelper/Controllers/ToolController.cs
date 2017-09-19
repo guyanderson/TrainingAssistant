@@ -47,7 +47,10 @@ namespace TrainingHelper.Controllers
         public IActionResult Edit(int id)
         {
             var thisTool = db.Tools.FirstOrDefault(x => x.ToolId == id);
-            return View(thisTool);
+            List<Bay> bays = db.Bays.ToList();
+            List<Certification> certifications = db.Certifications.ToList();
+            ToolCreateVM VM = new ToolCreateVM(thisTool, bays, certifications);
+            return View(VM);
         }
 
         //Edit Tool POST
@@ -67,7 +70,7 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
-        //Certification for in selected Tool
+        //Certification for selected Tool
         public IActionResult Details(int id)
         {
             Tool tool = db.Tools.FirstOrDefault(x => x.ToolId == id);

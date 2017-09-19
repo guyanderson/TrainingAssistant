@@ -1,40 +1,83 @@
-﻿@model TrainingHelper.Models.Tool
+﻿@*
+    @model TrainingHelper.Models.Tool
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @{
+        ViewData["Title"] = "Edit";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-<h4><strong>Edit this Tool:</strong> @Html.DisplayFor(model => model.Name)</h4>
-<hr />
-
-<br />
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.ToolId)
-
-    @Html.LabelFor(model => model.Name, "Tool Name:")
-    @Html.EditorFor(model => model.Name)
+    <h4><strong>Edit this Tool:</strong> @Html.DisplayFor(model => model.Name)</h4>
+    <hr />
     <br />
-    <br />
-    <strong>Select a Shift for this operator:</strong>
-    <select @Html.EditorFor(model => model.BayId)>
-        <option value="1">Photo Bay 1<option>
-        <option value="2">Photo Bay 2</option>
-        <option value="3">Photo Bay 3</option>
-        <option value="6">Plasma Etch Bay 1</option>
-        <option value="7">Plasma Etch Bay 2</option>
-        <option value="8">Wet Etch Bay 1</option>
-        <option value="9">Wet Etch Bay 2</option>
-        <option value="10">Implant Bay 1</option>
-        <option value="11">Implant Bay 2</option>
-        <option value="12">Metals Bay 1</option>
-        <option value="13">Metals Bay 2</option>
-        <option value="14">Diffusion Bay 1</option>
-        <option value="15">Diffusion Bay 2</option>
-    </select>
-    <br />
-    <br />
-    <input type="submit" value="Save" />
-}
 
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.ToolId)
+        @Html.LabelFor(model => model.Name, "Tool Name:")
+        @Html.EditorFor(model => model.Name)
+        <br />
+        <br />
+        <strong>Select a Shift for this operator:</strong>
+        <select @Html.EditorFor(model => model.BayId)>
+            <option value="1">Photo Bay 1
+            <option>
+            <option value="2">Photo Bay 2</option>
+            <option value="3">Photo Bay 3</option>
+            <option value="6">Plasma Etch Bay 1</option>
+            <option value="7">Plasma Etch Bay 2</option>
+            <option value="8">Wet Etch Bay 1</option>
+            <option value="9">Wet Etch Bay 2</option>
+            <option value="10">Implant Bay 1</option>
+            <option value="11">Implant Bay 2</option>
+            <option value="12">Metals Bay 1</option>
+            <option value="13">Metals Bay 2</option>
+            <option value="14">Diffusion Bay 1</option>
+            <option value="15">Diffusion Bay 2</option>
+        </select>
+        <br />
+        <br />
+        <input type="submit" value="Save" />
+    }
+*@
+
+
+    @model TrainingHelper.ViewModels.ToolCreateVM
+
+    @{
+        ViewData["Title"] = "Edit";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h4><strong>Edit this Tool:</strong> @Html.DisplayFor(model => model.Tool.Name)</h4>
+    <hr />
+
+    <br />
+    <form method="post" asp-action="Edit" asp-controller="Tool">
+        <br />
+        @Html.HiddenFor(model => model.Tool.ToolId)
+
+        @Html.LabelFor(model => model.Tool.Name, "Tool Name:")
+        @Html.EditorFor(model => model.Tool.Name, "", "Tool.Name")
+        <br />
+        <br />
+        <strong>What Certification is required to run this tool?</strong>
+        <select @Html.EditorFor(model => model.Tool.CertificationId, "", "Tool.CertificationId")>
+            @foreach (var x in Model.Certification)
+            {
+                <option value=@x.CertificationId>@x.Name</option>
+            }
+        </select>
+        <br />
+        <br />
+        <strong>Select the Bay that this Tool will be in:</strong>
+        <select @Html.EditorFor(model => model.Tool.BayId, "", "Tool.BayId")>
+            @foreach (var x in Model.Bay)
+            {
+                <option value=@x.BayId>@x.Name</option>
+            }
+        </select>
+        <br />
+        <br />
+        <input type="submit" value="Save" />
+    </form>
+    <br />
