@@ -68,5 +68,15 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
+        //Add Certification to Operator
+        public IActionResult addCertification(int operatorId, int certificatioinId)
+        {
+            var operId = operatorId;
+            var certId = certificatioinId;
+            db.OperatorCertifications.Add(operId, certId);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
