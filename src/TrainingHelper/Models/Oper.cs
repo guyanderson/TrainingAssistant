@@ -9,7 +9,7 @@ namespace TrainingHelper.Models
 {
 
     [Table("Operators")]
-    public class Operator
+    public class Oper
     {
         [Key]
         public int OperatorId { get; set; }
@@ -21,9 +21,9 @@ namespace TrainingHelper.Models
         public virtual Shift Shift { get; set; }
         public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
 
-        public Operator() { }
+        public Oper() { }
 
-        public Operator(string name, int shiftId)
+        public Oper(string name, int shiftId)
         {
             Name = name;
             ShiftId = shiftId;

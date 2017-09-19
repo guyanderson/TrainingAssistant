@@ -18,7 +18,7 @@ namespace TrainingHelper.Models
         public DbSet<Bay> Bays { get; set; }
         public DbSet<Tool> Tools { get; set; }
         public DbSet<Shift> Shifts { get; set; }
-        public DbSet<Operator> Operators { get; set; }
+        public DbSet<Oper> Operators { get; set; }
         public DbSet<Certification> Certifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

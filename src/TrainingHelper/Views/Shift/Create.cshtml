@@ -12,6 +12,7 @@
 <form method="post" asp-action="Create" asp-controller="Shift">
     <br />
     @Html.HiddenFor(model => model.ShiftId)
+
     @Html.LabelFor(model => model.Name, "Shift Name:")
     @Html.EditorFor(model => model.Name)
     <br />

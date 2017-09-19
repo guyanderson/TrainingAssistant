@@ -26,7 +26,7 @@ namespace TrainingHelper.Controllers
         //Create new Operator GET
         public IActionResult Create()
         {
-            Operator oper = new Operator();
+            Oper oper = new Oper();
             List<Shift> shifts = db.Shifts.ToList();
             OperatorCreateVM VM = new OperatorCreateVM(oper, shifts);
             return View(VM);
@@ -36,7 +36,7 @@ namespace TrainingHelper.Controllers
         [HttpPost]
         public IActionResult Create(string name, int shiftId)
         {
-            Operator newOperator = new Operator(name, shiftId);
+            Oper newOperator = new Oper(name, shiftId);
             db.Operators.Add(newOperator);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -52,9 +52,9 @@ namespace TrainingHelper.Controllers
         }
         //Edit Operator POST
         [HttpPost]
-        public IActionResult Edit(Operator op)
+        public IActionResult Edit(Oper oper)
         {
-            db.Entry(op).State = EntityState.Modified;
+            db.Entry(oper).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

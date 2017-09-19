@@ -11,14 +11,14 @@
 
 <form method="post" asp-action="Create" asp-controller="Operator">
     <br />
-    @Html.HiddenFor(model => model.Operator.OperatorId)
+    @Html.HiddenFor(model => model.Oper.OperatorId)
 
-    @Html.LabelFor(model => model.Operator.Name, "Operator Name:")
-    @Html.EditorFor(model => model.Operator.Name, "", "Name")
+    @Html.LabelFor(model => model.Oper.Name, "Operator Name:")
+    @Html.EditorFor(model => model.Oper.Name, "", "Name")
     <br />
     <br />
     <strong>Select a Shift for this operator:</strong>
-    <select @Html.EditorFor(model => model.Operator.ShiftId, "", "ShiftId")>
+    <select @Html.EditorFor(model => model.Oper.ShiftId, "", "ShiftId")>
         @foreach (var x in Model.Shift)
         {
             <option value=@x.ShiftId>@x.Name</option>

@@ -8,12 +8,12 @@ namespace TrainingHelper.ViewModels
 {
     public class OperatorCreateVM
     {
-        public virtual Operator Operator { get; set; }
+        public virtual Oper Oper { get; set; }
         public virtual ICollection<Shift> Shift { get; set; }
 
-        public OperatorCreateVM(Operator oper, List<Shift> shift)
+        public OperatorCreateVM(Oper oper, List<Shift> shift)
         {
-            Operator = oper;
+            Oper = oper;
             Shift = shift;
         }
     }
