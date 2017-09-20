@@ -1,0 +1,16 @@
+﻿@model TrainingHelper.ViewModels.OperatorDetailsVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>These are the Certifications for @Model.Oper.Name.</h3>
+
+
+@foreach (var x in Model.OperatorCertifications)
+{
+    <div class="row">
+        (@x.CertificationId)
+    </div>
+}

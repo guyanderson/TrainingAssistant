@@ -82,10 +82,14 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Details(int id)
+        {
+            Oper oper = db.Operators.FirstOrDefault(x => x.OperatorId == id);
+            List<OperatorCertifications> operCerts = db.OperatorCertifications.Where(x => x.OperatorId == id).ToList();
+            List<Certification> certifications = db.Certifications.Where(x => x.CertificationId == operCerts.CertificationId).ToList();
+            OperatorDetailsVM VM = new OperatorDetailsVM(oper, operCerts, certifications);
+            return View(VM);
+        }
+        
     }
 }
-
-// var newOperatorCertifications = new OperatorCertifications();
-// newOperatorCertifications.OperatorId = .OperatorId;
-// newOperatorCertifications.CertificationId = certification.CertificationId;
-// db.OperatorCertifications.Add(newOperatorCertifications);
