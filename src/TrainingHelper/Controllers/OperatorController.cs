@@ -47,7 +47,9 @@ namespace TrainingHelper.Controllers
         {
             var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
             List<Shift> shifts = db.Shifts.ToList();
-            OperatorCreateVM VM = new OperatorCreateVM(thisOperator, shifts);
+            List<Certification> certifications = db.Certifications.ToList();
+            OperatorCertifications operatorCertifications = new OperatorCertifications();
+            OperatorEditVM VM = new OperatorEditVM(thisOperator, shifts, certifications, operatorCertifications);
             return View(VM);
         }
         //Edit Operator POST
@@ -69,14 +71,21 @@ namespace TrainingHelper.Controllers
         }
 
         //Add Certification to Operator
-        public IActionResult addCertification(int operatorId, int certificatioinId)
+        public IActionResult AddCertToOper(Oper oper, OperatorCertifications operatorCertifications)
         {
-            var operId = operatorId;
-            var certId = certificatioinId;
-            db.OperatorCertifications.Add(operId, certId);
+            var newOperatorCertifications = new OperatorCertifications();
+
+            newOperatorCertifications.OperatorId = oper.OperatorId;
+            newOperatorCertifications.CertificationId = operatorCertifications.CertificationId;
+            db.OperatorCertifications.Add(newOperatorCertifications);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
     }
 }
+
+// var newOperatorCertifications = new OperatorCertifications();
+// newOperatorCertifications.OperatorId = .OperatorId;
+// newOperatorCertifications.CertificationId = certification.CertificationId;
+// db.OperatorCertifications.Add(newOperatorCertifications);

@@ -8,7 +8,7 @@ using TrainingHelper.Models;
 namespace TrainingHelper.Migrations
 {
     [DbContext(typeof(TrainingHelperDbContext))]
-    [Migration("20170916003357_initial")]
+    [Migration("20170919230054_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,12 +73,14 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("FabId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Name");
+
                     b.HasKey("FabId");
 
                     b.ToTable("Fab");
                 });
 
-            modelBuilder.Entity("TrainingHelper.Models.Operator", b =>
+            modelBuilder.Entity("TrainingHelper.Models.Oper", b =>
                 {
                     b.Property<int>("OperatorId")
                         .ValueGeneratedOnAdd();
@@ -100,19 +102,15 @@ namespace TrainingHelper.Migrations
                     b.Property<int>("OperatorCertificationsId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CertificationId");
+                    b.Property<int>("CertificationId");
 
-                    b.Property<int?>("OperatorCertificationsId1");
-
-                    b.Property<int?>("OperatorId");
+                    b.Property<int>("OperatorId");
 
                     b.Property<int?>("ShiftId");
 
                     b.HasKey("OperatorCertificationsId");
 
                     b.HasIndex("CertificationId");
-
-                    b.HasIndex("OperatorCertificationsId1");
 
                     b.HasIndex("OperatorId");
 
@@ -175,7 +173,7 @@ namespace TrainingHelper.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TrainingHelper.Models.Operator", b =>
+            modelBuilder.Entity("TrainingHelper.Models.Oper", b =>
                 {
                     b.HasOne("TrainingHelper.Models.Shift", "Shift")
                         .WithMany()
@@ -187,15 +185,13 @@ namespace TrainingHelper.Migrations
                 {
                     b.HasOne("TrainingHelper.Models.Certification", "Certification")
                         .WithMany("OperatorCertifications")
-                        .HasForeignKey("CertificationId");
+                        .HasForeignKey("CertificationId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("TrainingHelper.Models.OperatorCertifications", "Operator")
-                        .WithMany()
-                        .HasForeignKey("OperatorCertificationsId1");
-
-                    b.HasOne("TrainingHelper.Models.Operator")
+                    b.HasOne("TrainingHelper.Models.Oper", "Oper")
                         .WithMany("OperatorCertifications")
-                        .HasForeignKey("OperatorId");
+                        .HasForeignKey("OperatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("TrainingHelper.Models.Shift")
                         .WithMany("Operator")

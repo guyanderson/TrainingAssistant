@@ -9,7 +9,7 @@ namespace TrainingHelper.Models
     {
         public int OperatorCertificationsId { get; set; }
         public int OperatorId { get; set; }
-        public int CertificationsId { get; set; }
+        public int CertificationId { get; set; }
 
         public virtual Certification Certification { get; set; }
         public virtual Oper Oper { get; set; }
@@ -17,8 +17,3 @@ namespace TrainingHelper.Models
 }
 
 
-
-
-newProfileTag.ProfiledId = pr.ProfileId; 
-     newProfileTag.TagId = newTag.TagId; //< It SHOULD NOT be zero...
-     Context.ProfilesTags.Add(newProfileTag);

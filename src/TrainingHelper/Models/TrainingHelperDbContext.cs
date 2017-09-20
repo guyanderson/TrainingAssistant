@@ -20,6 +20,7 @@ namespace TrainingHelper.Models
         public DbSet<Shift> Shifts { get; set; }
         public DbSet<Oper> Operators { get; set; }
         public DbSet<Certification> Certifications { get; set; }
+        public DbSet<OperatorCertifications> OperatorCertifications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

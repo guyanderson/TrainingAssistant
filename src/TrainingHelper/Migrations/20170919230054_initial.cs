@@ -28,7 +28,8 @@ namespace TrainingHelper.Migrations
                 columns: table => new
                 {
                     FabId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -149,9 +150,8 @@ namespace TrainingHelper.Migrations
                 {
                     OperatorCertificationsId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CertificationId = table.Column<int>(nullable: true),
-                    OperatorCertificationsId1 = table.Column<int>(nullable: true),
-                    OperatorId = table.Column<int>(nullable: true),
+                    CertificationId = table.Column<int>(nullable: false),
+                    OperatorId = table.Column<int>(nullable: false),
                     ShiftId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -162,19 +162,13 @@ namespace TrainingHelper.Migrations
                         column: x => x.CertificationId,
                         principalTable: "Certifications",
                         principalColumn: "CertificationId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_OperatorCertifications_OperatorCertifications_OperatorCertificationsId1",
-                        column: x => x.OperatorCertificationsId1,
-                        principalTable: "OperatorCertifications",
-                        principalColumn: "OperatorCertificationsId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OperatorCertifications_Operators_OperatorId",
                         column: x => x.OperatorId,
                         principalTable: "Operators",
                         principalColumn: "OperatorId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OperatorCertifications_Shifts_ShiftId",
                         column: x => x.ShiftId,
@@ -202,11 +196,6 @@ namespace TrainingHelper.Migrations
                 name: "IX_OperatorCertifications_CertificationId",
                 table: "OperatorCertifications",
                 column: "CertificationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OperatorCertifications_OperatorCertificationsId1",
-                table: "OperatorCertifications",
-                column: "OperatorCertificationsId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OperatorCertifications_OperatorId",
