@@ -28,10 +28,5 @@ namespace TrainingHelper.Models
             TargetTrained = target;
         }
 
-        //public Certification()
-        //{
-        //    this.Operators = new HashSet<Operator>();
-        //}
-
     }
 }

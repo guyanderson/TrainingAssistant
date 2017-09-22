@@ -30,6 +30,6 @@ namespace TrainingHelper.Models
             Name = name;
             BayId = bayId;
             CertificationId = certificationId;
-        }
+        }       
     }
 }

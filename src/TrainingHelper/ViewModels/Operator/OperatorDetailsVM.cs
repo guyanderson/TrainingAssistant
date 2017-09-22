@@ -8,15 +8,11 @@ namespace TrainingHelper.ViewModels
 {
     public class OperatorDetailsVM
     {
-        public virtual Oper Oper { get; set; }
-        public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
-        public virtual ICollection<Certification> Certification { get; set; }
+        public Oper Oper;
 
-        public OperatorDetailsVM(Oper oper, List<OperatorCertifications> operatorCertifications, List<Certification> certifications)
+        public OperatorDetailsVM(Oper oper)
         {
             Oper = oper;
-            OperatorCertifications = operatorCertifications;
-            Certification = certifications;
         }
     }
 }

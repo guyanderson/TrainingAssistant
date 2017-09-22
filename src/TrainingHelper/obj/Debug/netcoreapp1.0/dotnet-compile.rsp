@@ -214,8 +214,8 @@ C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Controllers\FabControl
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Controllers\OperatorController.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Controllers\ShiftController.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Controllers\ToolController.cs
-C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170919230054_initial.cs
-C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170919230054_initial.Designer.cs
+C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170921032143_initial.cs
+C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170921032143_initial.Designer.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\TrainingHelperDbContextModelSnapshot.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Models\Area.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Models\Bay.cs

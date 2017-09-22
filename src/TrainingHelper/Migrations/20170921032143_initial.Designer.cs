@@ -8,7 +8,7 @@ using TrainingHelper.Models;
 namespace TrainingHelper.Migrations
 {
     [DbContext(typeof(TrainingHelperDbContext))]
-    [Migration("20170919230054_initial")]
+    [Migration("20170921032143_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

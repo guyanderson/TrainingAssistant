@@ -5,12 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>These are the Certifications for @Model.Oper.Name.</h3>
+<h3>These are the Certifications for @Model.Oper.Name</h3>
 
 
-@foreach (var x in Model.OperatorCertifications)
+@foreach (var x in Model.Oper.OperatorCertifications)
 {
     <div class="row">
-        (@x.CertificationId)
+        @x.Certification.Name
     </div>
 }

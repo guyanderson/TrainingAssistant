@@ -84,12 +84,9 @@ namespace TrainingHelper.Controllers
 
         public IActionResult Details(int id)
         {
-            Oper oper = db.Operators.FirstOrDefault(x => x.OperatorId == id);
-            List<OperatorCertifications> operCerts = db.OperatorCertifications.Where(x => x.OperatorId == id).ToList();
-            List<Certification> certifications = db.Certifications.Where(x => x.CertificationId == operCerts.CertificationId).ToList();
-            OperatorDetailsVM VM = new OperatorDetailsVM(oper, operCerts, certifications);
+            Oper oper = db.Operators.Include(x => x.OperatorCertifications).ThenInclude(x => x.Certification).FirstOrDefault(x => x.OperatorId == id);
+            OperatorDetailsVM VM = new OperatorDetailsVM(oper);
             return View(VM);
         }
-        
-    }
+    }  
 }

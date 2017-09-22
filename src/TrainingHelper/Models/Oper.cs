@@ -20,8 +20,11 @@ namespace TrainingHelper.Models
 
         public virtual Shift Shift { get; set; }
         public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
+        //public virtual ICollection<Certification> Certifications { get; set; }
 
-        public Oper() { }
+        public Oper() {
+            
+        }
 
         public Oper(string name, int shiftId)
         {
