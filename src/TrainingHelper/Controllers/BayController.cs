@@ -68,14 +68,9 @@ namespace TrainingHelper.Controllers
         //list all Tools in selected Bay
          public IActionResult Details(int id)
         {
-            Bay bay = db.Bays.FirstOrDefault(x => x.BayId == id);
-            List<Tool>tools = db.Tools.Where(x => x.BayId == id).ToList();
-            BayDetailVM VM = new BayDetailVM(bay,tools);
+            Bay bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).FirstOrDefault(x => x.BayId == id);
+            BayDetailVM VM = new BayDetailVM(bay);
             return View(VM);
         }
-
-
     }
 }
-
-

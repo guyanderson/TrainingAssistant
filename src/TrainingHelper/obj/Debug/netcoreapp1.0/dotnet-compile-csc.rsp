@@ -145,7 +145,7 @@
 -r:"C:\Users\Guy\.nuget\packages\System.Linq\4.3.0\ref\netstandard1.6\System.Linq.dll"
 -r:"C:\Users\Guy\.nuget\packages\System.Linq.Expressions\4.3.0\ref\netstandard1.6\System.Linq.Expressions.dll"
 -r:"C:\Users\Guy\.nuget\packages\System.Linq.Parallel\4.0.1\ref\netstandard1.1\System.Linq.Parallel.dll"
--r:"C:\Users\Guy\.nuget\packages\System.Linq.Queryable\4.0.1\ref\netstandard1.0\System.Linq.Queryable.dll"
+-r:"C:\Users\Guy\.nuget\packages\System.Linq.Queryable\4.3.0\ref\netstandard1.0\System.Linq.Queryable.dll"
 -r:"C:\Users\Guy\.nuget\packages\System.Net.Http\4.3.0\ref\netstandard1.3\System.Net.Http.dll"
 -r:"C:\Users\Guy\.nuget\packages\System.Net.NameResolution\4.0.0\ref\netstandard1.3\System.Net.NameResolution.dll"
 -r:"C:\Users\Guy\.nuget\packages\System.Net.Primitives\4.3.0\ref\netstandard1.3\System.Net.Primitives.dll"

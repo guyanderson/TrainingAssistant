@@ -8,13 +8,13 @@ namespace TrainingHelper.ViewModels
 {
     public class BayDetailVM
     {
-        public virtual Bay Bay { get; set; }
-        public virtual ICollection<Tool> Tool { get; set; }
+        public Bay Bay;
+        //public Tool Tool;
 
-        public BayDetailVM(Bay bay, List<Tool> tools)
+        public BayDetailVM(Bay bay)
         {
             Bay = bay;
-            Tool = tools;
+            //Tool = tools;
         }
 
     }

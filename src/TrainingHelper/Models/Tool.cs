@@ -22,7 +22,6 @@ namespace TrainingHelper.Models
         public virtual Bay Bay { get; set; }
         public virtual Certification Certification { get; set; }
 
-
         public Tool() { }
 
         public Tool(string name, int bayId, int certificationId)

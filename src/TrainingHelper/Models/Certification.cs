@@ -26,7 +26,6 @@ namespace TrainingHelper.Models
         {
             Name = name;
             TargetTrained = target;
-        }
-
+        }       
     }
 }
