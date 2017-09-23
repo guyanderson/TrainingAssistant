@@ -6,14 +6,13 @@ using TrainingHelper.Models;
 
 namespace TrainingHelper.ViewModels
 {
-    public class BayDetailVM
+    public class ToolIndexVM
     {
-        public Bay Bay;
+        public List<Tool> Tool { get; set; }
 
-        public BayDetailVM(Bay bay)
+        public ToolIndexVM(List<Tool> tool)
         {
-            Bay = bay;
+            Tool = tool;
         }
-
     }
 }

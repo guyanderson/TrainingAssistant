@@ -18,7 +18,9 @@ namespace TrainingHelper.Controllers
         //GET Tool Index View
         public IActionResult Index()
         {
-            return View(db.Tools.ToList());
+            List<Tool> tool = db.Tools.Include(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
+            ToolIndexVM VM = new ToolIndexVM(tool);
+            return View(VM);
         }
         //GET Tool List for Admin Editing
         public IActionResult List()
@@ -78,5 +80,6 @@ namespace TrainingHelper.Controllers
             ToolDetailVM VM = new ToolDetailVM(tool, certification);
             return View(VM);
         }
+        
     }
 }

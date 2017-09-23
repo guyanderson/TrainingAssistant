@@ -8,7 +8,7 @@ namespace TrainingHelper.ViewModels
 {
     public class ToolDetailVM
     {
-        public virtual Tool Tool { get; set; }
+        public Tool Tool { get; set; }
         public virtual Certification Certification { get; set; }
 
         public ToolDetailVM(Tool tool, Certification certification)

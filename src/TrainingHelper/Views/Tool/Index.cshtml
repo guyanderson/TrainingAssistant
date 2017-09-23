@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingHelper.Models.Tool>
+﻿@model TrainingHelper.ViewModels.ToolIndexVM
 
 @{
     ViewData["Title"] = "Index";
@@ -9,10 +9,20 @@
 <h4>Here is a list of all Tools in the Fab.</h4>
 <hr />
 
-
-@foreach (var x in Model)
+@foreach (var x in Model.Tool)
 {
-    <div class="row">
-        @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-success custom" })
-    </div>
+    int operCert = x.Certification.OperatorCertifications.AsQueryable().Select(y => y.Oper).Count();
+
+    @if (operCert >= x.Certification.TargetTrained)
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-success custom" })
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-danger custom" })
+        </div>
+    }
 }
