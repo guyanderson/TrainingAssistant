@@ -1,17 +1,96 @@
-﻿@model IEnumerable<TrainingHelper.Models.Bay>
+﻿@*
+        @model IEnumerable<TrainingHelper.Models.Bay>
+
+        @{
+            ViewData["Title"] = "Index";
+            Layout = "~/Views/Shared/_Layout.cshtml";
+        }
+
+        <br />
+        <h4>Here is a list of all Bays in the Fab.</h4>
+        <hr />
+
+        @foreach (var x in Model)
+        {
+            <div class="row">
+                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+            </div>
+        }
+
+
+    @model TrainingHelper.ViewModels.BayIndexVM
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <br />
+    <h4>Here is a list of all Bays in the Fab.</h4>
+    <hr />
+
+    @foreach (var x in Model.Bay)
+    {
+        int operCert = x.Tool.Select(y => y.Certification).Select(z => z.OperatorCertifications).Count();
+
+        @if (operCert >= x.TargetTrained)
+        {
+            <div class="row">
+                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
+            </div>
+        }
+    }
+*@
+
+@model TrainingHelper.ViewModels.BayIndexVM
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <br />
 <h4>Here is a list of all Bays in the Fab.</h4>
 <hr />
 
-@foreach (var x in Model)
+@foreach (var x in Model.Bay)
 {
-    <div class="row">
-        @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-    </div>
+    int operCert = x.Tool.Select(a => a.Certification).Select(b => b.OperatorCertifications).Select(c => c.Oper).Count();
+    bool enough;
+    
+    @if (enough == true)
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
+        </div>
+    }
+    @if (enough == false)
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
+        </div>
+    }
+        public bool isEnough()
+        {
+            foreach (var y in Model.Bay.Select(z => z.Tool))
+            {
+                if (operCert <= y.Select(r => r.Certification.TargetTrained))
+                {
+                    enough = true;
+                }
+                else
+                {
+                    enough = false;
+                    break;
+                }
+                return enough;
+            }
+        }
+
+    }
 }

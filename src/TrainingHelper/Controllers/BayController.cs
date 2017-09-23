@@ -14,9 +14,12 @@ namespace TrainingHelper.Controllers
     public class BayController : Controller
     {
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
+
         public IActionResult Index()
         {
-            return View(db.Bays.ToList());
+            List<Bay> bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
+            BayIndexVM VM = new BayIndexVM(bay);
+            return View(VM);
         }
 
         //Create new Bay
