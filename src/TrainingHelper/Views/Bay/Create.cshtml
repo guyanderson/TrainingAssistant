@@ -14,7 +14,7 @@
     @Html.HiddenFor(Model => Model.Bay.BayId)
 
     @Html.LabelFor(Model => Model.Bay.Name, "Bay Name:")
-    @Html.EditorFor(Model => Model.Bay.Name, "", "Name")
+    @Html.EditorFor(Model => Model.Bay.Name, "", "Name", new { @class = "placeholder = Enter password" })
     <br />
     <br />
     @Html.LabelFor(Model => Model.Bay.TargetTrained, "What's the minium number of operators needed to be certified to run all tools in this bay?")
@@ -31,25 +31,58 @@
     <br />
     <br />
     <input type="submit" value="Save" />
+
+    <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown"">
+        <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId", new { @class= "dropdown-menu" })>
+            @foreach (var x in Model.Area)
+            {
+                <option value=@x.AreaId>@x.Name</option>
+            }
+        </select>
+    </div>
 </form>
  
-
-
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Dropdown Example
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a href="#">HTML</a></li>
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+    </ul>
+</div>
 
 @*
-    drop
-    <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+            Dropdown Example
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+    </div>
+
+
+
+        drop
+        <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
+            @foreach (var x in Model.Area)
+            {
+                <option value=@x.AreaId>@x.Name</option>
+            }
+        </select>
+
+        radio
         @foreach (var x in Model.Area)
         {
-            <option value=@x.AreaId>@x.Name</option>
+            @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
         }
-    </select>
-
-    radio
-    @foreach (var x in Model.Area)
-    {
-        @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
-    }
 
 *@
 
