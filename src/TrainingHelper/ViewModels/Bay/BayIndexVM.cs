@@ -14,14 +14,19 @@ namespace TrainingHelper.ViewModels
         {
             Bay = bay;
         }
+
+        
     }
 
 }
-/*
 
+/*
     public bool isEnough()
     {
-        int operCert = Bay.Select(a => a.Tool).Select(a => a.Certification).OperatorCertifications.AsQueryable().Select(y => y.Oper).Count();
+        
+        bool enough;
+        int operCert = db.Bays.Include(a => a.Tool).Select(a => a.Certification).OperatorCertifications.AsQueryable().Select(y => y.Oper).Count();
+
         foreach (var y in Bay.Select(z => z.Tool))
             if (operCert <= y.Select(r => r.Certification.TargetTrained))
             {
@@ -33,6 +38,6 @@ namespace TrainingHelper.ViewModels
                 break;
             }
         }
-        return enough
+        return enough;
     }
-*/
+   */

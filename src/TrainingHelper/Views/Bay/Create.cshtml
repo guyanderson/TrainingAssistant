@@ -14,14 +14,15 @@
     @Html.HiddenFor(Model => Model.Bay.BayId)
 
     @Html.LabelFor(Model => Model.Bay.Name, "Bay Name:")
-    @Html.EditorFor(Model => Model.Bay.Name, "", "Name", new { @class = "placeholder = Enter password" })
+    @Html.EditorFor(Model => Model.Bay.Name, "", "Name")
     <br />
     <br />
     @Html.LabelFor(Model => Model.Bay.TargetTrained, "What's the minium number of operators needed to be certified to run all tools in this bay?")
     @Html.EditorFor(Model => Model.Bay.TargetTrained, "", "TargetTrained")
     <br />
     <br />
-    <strong>Select an Area for this Bay:</strong><br>
+    <strong>Select an Area for this Bay:</strong>
+    <br>
     <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
         @foreach (var x in Model.Area)
         {
@@ -32,57 +33,88 @@
     <br />
     <input type="submit" value="Save" />
 
-    <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown"">
-        <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId", new { @class= "dropdown-menu" })>
-            @foreach (var x in Model.Area)
-            {
-                <option value=@x.AreaId>@x.Name</option>
-            }
-        </select>
-    </div>
+    
+
 </form>
  
-<div class="dropdown">
-    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-        Dropdown Example
-        <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="#">HTML</a></li>
-        <li><a href="#">CSS</a></li>
-        <li><a href="#">JavaScript</a></li>
-    </ul>
-</div>
+    @*
 
-@*
+        (m => m.Certification, Bay.Tools, "Select Certification for Tool"
 
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Dropdown Example
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-        </ul>
-    </div>
+            @Html.DropDownListFor(m => m.Bay.AreaId,
+                            new SelectList(Enum.GetValues(typeof(Area))),
+                            "Select Area")
+        ==================================================
 
+        @Html.DropDownListFor(Model => Model.Bay.AreaId, Model.Bay.Area, "AreaId", new { @class = "form-control" })
 
-
-        drop
-        <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
+        <div class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId", new { @class = "dropdown-menu" })
             @foreach (var x in Model.Area)
             {
-                <option value=@x.AreaId>@x.Name</option>
-            }
-        </select>
+                value = @x.AreaId > @x.Name
+                            }
 
-        radio
-        @foreach (var x in Model.Area)
-        {
-            @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
-        }
+        </div>
 
-*@
+            ==================================================
+
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Dropdown Example
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">CSS</a></li>
+                <li><a href="#">JavaScript</a></li>
+            </ul>
+        </div>
+
+        ==================================================
+
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Dropdown Example
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu">
+                    @foreach (var x in Model.Area)
+                    {
+                        <a @x.AreaId>@x.Name</a>
+                    }
+                </div>
+            </div>
+
+        ==================================================
+
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    Dropdown Example
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
+            </div>
+
+        ==================================================
+
+                drop
+                <select @Html.EditorFor(Model => Model.Bay.AreaId, "", "AreaId")>
+                    @foreach (var x in Model.Area)
+                    {
+                        <option value=@x.AreaId>@x.Name</option>
+                    }
+                </select>
+
+                radio
+                @foreach (var x in Model.Area)
+                {
+                    @Html.RadioButtonFor(Model => Model.Bay.AreaId, x.AreaId) @Html.Label(@x.Name)
+                }
+
+    *@
 

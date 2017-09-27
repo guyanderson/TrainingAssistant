@@ -7,20 +7,20 @@
 
 <h3>Here are the Tools located in @Model.Bay.Name.</h3>
     
-@foreach (var x in Model.Bay.Tool)
+@foreach (var tool in Model.Bay.Tool)
 {
-    int operCert = x.Certification.OperatorCertifications.AsQueryable().Select(y => y.Oper).Count();
+    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
 
-    @if (operCert >= Model.Bay.TargetTrained)
+    @if (numOfCertifiedOps >= tool.Certification.TargetTrained)
     {
         <div class="row">
-            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-success custom" })
+            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success custom" })
         </div>
     }
     else
     {
         <div class="row">
-            @Html.ActionLink(x.Name, "Details", "Tool", new { id = x.ToolId }, new { @class = "btn btn-danger custom" })
+            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger custom" })
         </div>
     }
 }

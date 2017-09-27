@@ -20,6 +20,7 @@ namespace TrainingHelper.Controllers
             List<Bay> bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
             BayIndexVM VM = new BayIndexVM(bay);
             return View(VM);
+            //return View(db.Bays.ToList());
         }
 
         //Create new Bay
