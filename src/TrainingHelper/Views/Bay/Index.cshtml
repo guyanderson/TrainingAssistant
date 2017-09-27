@@ -1,212 +1,42 @@
-﻿@* working non color coded tree
-        @model IEnumerable<TrainingHelper.Models.Bay>
+﻿@model TrainingHelper.ViewModels.BayIndexVM
 
-        @{
-            ViewData["Title"] = "Index";
-            Layout = "~/Views/Shared/_Layout.cshtml";
-        }
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-        <br />
-        <h4>Here is a list of all Bays in the Fab.</h4>
-        <hr />
+<br />
+<h4>Here is a list of all Bays in the Fab.</h4>
+<hr />
 
-        @foreach (var x in Model)
-        {
-            <div class="row">
-                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-            </div>
-        }
-
-
-    =====will render but logic is incorrect=======================
-    @model TrainingHelper.ViewModels.BayIndexVM
-
-    @{
-        ViewData["Title"] = "Index";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
-
-    <br />
-    <h4>Here is a list of all Bays in the Fab.</h4>
-    <hr />
-
-    @foreach (var x in Model.Bay)
+@foreach (var bay in Model.Bay)
+{
+    bool enough = true;
+    foreach (var tool in bay.Tool)
     {
-        int numOfCertifiedOps = x.Tool.Select(y => y.Certification).Select(z => z.OperatorCertifications).Count();
+        int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
 
-       @if (numOfCertifiedOps >= x.TargetTrained)
+        if (numOfCertifiedOps >= tool.Certification.TargetTrained)
         {
-            <div class="row">
-                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-            </div>
+            enough = true;
         }
         else
         {
-            <div class="row">
-                @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
-            </div>
+            enough = false;
+            break;
         }
     }
-*@
 
-
-    ===================================
-
-        @model TrainingHelper.ViewModels.BayIndexVM
-
-        @{
-            ViewData["Title"] = "Index";
-            Layout = "~/Views/Shared/_Layout.cshtml";
-        }
-
-        <br />
-        <h4>Here is a list of all Bays in the Fab.</h4>
-        <hr />
-
-        @foreach (var bay in Model.Bay)
-        {
-            bool enough;
-
-            public bool isEnough()
-            {
-            foreach (var tool in Model.Bay.Tool)
-            {
-                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-                @*int numOfCertifiedOps = VM.Bay.Select(bay => bay.tool).Select(tool => tool.Certification).Select(cert => cert.OperatorCertifications).Count();
-                int numOfCertifiedOps = bay.Tool.Select(tool => tool.Certification).Select(cert => cert.OperatorCertifications).Count();*
-                *@
-
-                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                {
-                    enough = true;
-                }
-                else
-                {
-                    enough = false;
-                    break;
-                }
-            }
-            return enough;
-        }
-
-
-            @foreach(var x in Model.Bay.Tool)
-        {
-            if (enough == true)
-            {
-                <div class="row">
-                    @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-                </div>
-            }
-            else
-            {
-                <div class="row">
-                    @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
-                </div>
-            }
-        }
-
-
-
-@*
-                ===================================================
-
-                @model TrainingHelper.ViewModels.BayIndexVM
-
-                @{
-                    ViewData["Title"] = "Index";
-                    Layout = "~/Views/Shared/_Layout.cshtml";
-                }
-                <br />
-                <h4>Here is a list of all Bays in the Fab.</h4>
-                <hr />
-
-                @foreach (var x in Model.Bay)
-                {
-                    int operCert = x.Tool.Select(a => a.Certification).Select(b => b.OperatorCertifications).Select(c => c.Oper).Count();
-                    bool enough;
-
-                    @if (enough == true)
-                    {
-                        <div class="row">
-                            @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-                        </div>
-                    }
-                    @if (enough == false)
-                    {
-                        <div class="row">
-                            @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
-                        </div>
-                    }
-                        public bool isEnough()
-                        {
-                            foreach (var y in Model.Bay.Select(z => z.Tool))
-                            {
-                                if (operCert <= y.Select(r => r.Certification.TargetTrained))
-                                {
-                                    enough = true;
-                                }
-                                else
-                                {
-                                    enough = false;
-                                    break;
-                                }
-                                return enough;
-                            }
-                        }
-
-                    }
-                }
-
-    =========================
-            @model TrainingHelper.ViewModels.BayIndexVM
-
-        @{
-            ViewData["Title"] = "Index";
-            Layout = "~/Views/Shared/_Layout.cshtml";
-        }
-
-        <br />
-        <h4>Here is a list of all Bays in the Fab.</h4>
-        <hr />
-
-        @foreach (var bay in Model.Bay)
-        {
-            bool enough;
-
-            public bool isEnough()
-            {
-            foreach (var tool in Model.Bay.Tool)
-            {
-                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                {
-                    enough = true;
-                }
-                else
-                {
-                    enough = false;
-                    break;
-                }
-            }
-            return enough;
-        }
-
-
-            @foreach(var x in Model.Bay.Tool)
-            {
-            if (enough == true)
-            {
-                <div class="row">
-                    @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-                </div>
-            }
-            else
-            {
-                <div class="row">
-                    @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-danger custom" })
-                </div>
-            }
-        }
-*@
+    if (enough == true)
+    {
+        <div class="row">
+            @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success custom" })
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger custom" })
+        </div>
+    }
+}

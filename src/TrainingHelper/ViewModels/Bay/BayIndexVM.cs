@@ -20,24 +20,3 @@ namespace TrainingHelper.ViewModels
 
 }
 
-/*
-    public bool isEnough()
-    {
-        
-        bool enough;
-        int operCert = db.Bays.Include(a => a.Tool).Select(a => a.Certification).OperatorCertifications.AsQueryable().Select(y => y.Oper).Count();
-
-        foreach (var y in Bay.Select(z => z.Tool))
-            if (operCert <= y.Select(r => r.Certification.TargetTrained))
-            {
-                enough = true;
-            }
-            else
-            {
-                enough = false;
-                break;
-            }
-        }
-        return enough;
-    }
-   */
