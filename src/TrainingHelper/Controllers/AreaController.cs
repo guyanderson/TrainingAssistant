@@ -17,7 +17,10 @@ namespace TrainingHelper.Controllers
 
         public IActionResult Index()
         {
-            return View(db.Areas.ToList());
+            List<Area> areas =db.Areas.Include(area => area.Bay).ThenInclude(bay => bay.Tool).ThenInclude(tool => tool.Certification).ThenInclude(cert => cert.OperatorCertifications).ThenInclude(opCert => opCert.Oper).ToList();
+            AreaIndexVM VM = new AreaIndexVM(areas);
+            return View(VM);
+            //return View(db.Areas.ToList());
         }
 
         //Create new Area GET

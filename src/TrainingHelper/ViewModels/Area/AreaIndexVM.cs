@@ -6,14 +6,13 @@ using TrainingHelper.Models;
 
 namespace TrainingHelper.ViewModels
 {
-    public class BayIndexVM
+    public class AreaIndexVM
     {
-        public List<Bay> Bay { get; set; }
+        public List<Area> Areas { get; set; }
 
-        public BayIndexVM(List<Bay> bay)
+        public AreaIndexVM( List<Area> areas)
         {
-            Bay = bay;
+            Areas = areas;
         }
     }
 }
-
