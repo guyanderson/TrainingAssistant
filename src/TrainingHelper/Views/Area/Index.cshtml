@@ -14,7 +14,38 @@
     <div class="row">
         @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
     </div>
+    <br />
+    <div class="panel panel-success col-md-4">
+        @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "panel-heading" })
+        <div class="panel-body">Panel Content</div>
+    </div>
+
+    <div class="panel panel-success col-md-4">
+        <div class="btn panel-heading mine">@Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }) </div>
+        <div class="panel-body">Panel Content</div>
+    </div>
 }
 
 
 
+@*
+    ==================Original============
+
+    @model IEnumerable<TrainingHelper.Models.Area>
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <br />
+    <h4>Here is a list of all Areas in the Fab.</h4>
+    <hr />
+
+    @foreach (var x in Model)
+    {
+        <div class="row">
+            @Html.ActionLink(x.Name, "Details", "Area", new { id = x.AreaId }, new { @class = "btn btn-success custom" })
+        </div>
+    }
+*@
