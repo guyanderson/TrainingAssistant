@@ -25,6 +25,16 @@ list-style: none;
 .panel-info.custom {
     border: 2px solid #31708f;
 }
+.row {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  border: 1px solid black;
+}
+.flex {
+  flex: 1;
+}
+
 */
 .btn.custom {
     margin-bottom: 5px;
@@ -33,10 +43,27 @@ list-style: none;
     border: 1px solid #3c763d;
 }
 
+
 .btn-info.custom {
     border: 1px solid #31708f;
 }
 
 .mine {
     display: block;
+}
+
+.bay-btn{
+    margin: 5px;
+    display: block;
+}
+.panel-custom {
+    padding: 0px;
+}
+.fill {
+    display: table
+}
+
+.panel-body-custom {
+    padding: 0px;
+    height: 175px;
 }

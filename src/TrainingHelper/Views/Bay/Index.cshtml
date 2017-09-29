@@ -8,35 +8,43 @@
 <br />
 <h4>Here is a list of all Bays in the Fab.</h4>
 <hr />
-
-@foreach (var bay in Model.Bay)
-{
-    bool enough = true;
-    foreach (var tool in bay.Tool)
+<div class="row">
+    @foreach (var bay in Model.Bay)
     {
-        int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+        <div class="panel panel-success col-md-4 fill">
+            <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
+            <div class="panel-body panel-body-custom">
+                @foreach (var tool in bay.Tool)
+                {
+                    bool enough = false;
+                    foreach (var x in bay.Tool)
+                    {
+                        int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
 
-        if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-        {
-            enough = true;
-        }
-        else
-        {
-            enough = false;
-            break;
-        }
-    }
-
-    if (enough == true)
-    {
-        <div class="row">
-            @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success custom" })
+                        if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                        {
+                            enough = true;
+                        }
+                        else
+                        {
+                            enough = false;
+                            break;
+                        }
+                    }
+                    if (enough == true)
+                    {
+                    <div class="col-md-6 panel-custom">
+                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
+                    </div>
+                    }
+                    else
+                    {
+                    <div class="col-md-6 panel-custom">
+                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
+                    </div>
+                    }
+                }
+            </div>
         </div>
     }
-    else
-    {
-        <div class="row">
-            @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger custom" })
-        </div>
-    }
-}
+</div>
