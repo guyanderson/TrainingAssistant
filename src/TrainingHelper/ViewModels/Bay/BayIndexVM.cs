@@ -9,11 +9,13 @@ namespace TrainingHelper.ViewModels
     public class BayIndexVM
     {
         public List<Bay> Bay { get; set; }
+        public List<Bay> FailedCertList { get; set; }
 
-        public BayIndexVM(List<Bay> bay)
+        public BayIndexVM(List<Bay> bay, List<Bay> failedCertList)
         {
             Bay = bay;
+            FailedCertList = failedCertList;
         }
+
     }
 }
-

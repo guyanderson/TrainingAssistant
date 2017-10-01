@@ -15,10 +15,30 @@ namespace TrainingHelper.Controllers
     {
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
 
+        public List<Bay> isEnough(List<Bay> bays)
+        {
+            int numOfCertifiedOps;
+            List<Bay> FailedCertList = new List<Bay>();
+
+            foreach (Bay bay in bays)
+            {
+                foreach (Tool tool in bay.Tool)
+                {
+                    numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                    if (numOfCertifiedOps < tool.Certification.TargetTrained)
+                    {
+                        FailedCertList.Add(bay);
+                    }
+                }
+            }
+            return FailedCertList;
+        }
+
         public IActionResult Index()
         {
             List<Bay> bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
-            BayIndexVM VM = new BayIndexVM(bay);
+            List<Bay> failedCertList = isEnough(bay);
+            BayIndexVM VM = new BayIndexVM(bay, failedCertList);
             return View(VM);
         }
 
