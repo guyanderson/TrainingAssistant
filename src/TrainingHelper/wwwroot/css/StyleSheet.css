@@ -68,3 +68,8 @@ list-style: none;
     padding: 0px;
     height: 175px;
 }
+a:hover {
+	color: #FFF;
+	background: none;
+	text-decoration: none;
+}
