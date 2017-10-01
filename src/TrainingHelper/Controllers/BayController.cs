@@ -15,10 +15,10 @@ namespace TrainingHelper.Controllers
     {
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
 
-        public List<Bay> isEnough(List<Bay> bays)
+        public List<Bay> getListOfFailedBays(List<Bay> bays)
         {
             int numOfCertifiedOps;
-            List<Bay> FailedCertList = new List<Bay>();
+            List<Bay> FailedBayList = new List<Bay>();
 
             foreach (Bay bay in bays)
             {
@@ -27,7 +27,26 @@ namespace TrainingHelper.Controllers
                     numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
                     if (numOfCertifiedOps < tool.Certification.TargetTrained)
                     {
-                        FailedCertList.Add(bay);
+                        FailedBayList.Add(bay);
+                    }
+                }
+            }
+            return FailedBayList;
+        }
+
+        public List<Certification> getListOfFailedCertifications(List<Bay> bays)
+        {
+            int numOfCertifiedOps;
+            List<Certification> FailedCertList = new List<Certification>();
+
+            foreach (Bay bay in bays)
+            {
+                foreach (Tool tool in bay.Tool)
+                {
+                    numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                    if (numOfCertifiedOps < tool.Certification.TargetTrained)
+                    {
+                        FailedCertList.Add(tool.Certification);
                     }
                 }
             }
@@ -37,8 +56,9 @@ namespace TrainingHelper.Controllers
         public IActionResult Index()
         {
             List<Bay> bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
-            List<Bay> failedCertList = isEnough(bay);
-            BayIndexVM VM = new BayIndexVM(bay, failedCertList);
+            List<Bay> failedBayList = getListOfFailedBays(bay);
+            List<Certification> FailedCertList = getListOfFailedCertifications(bay);
+            BayIndexVM VM = new BayIndexVM(bay, failedBayList, FailedCertList);
             return View(VM);
         }
 

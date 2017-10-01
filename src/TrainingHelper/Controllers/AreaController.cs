@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,10 +15,34 @@ namespace TrainingHelper.Controllers
     {
         private TrainingHelperDbContext db = new TrainingHelperDbContext();
 
+
+        public List<Area> getListOfFailedAreas(List<Area> areas)
+        {
+            int numOfCertifiedOps;
+            List<Area> FailedAreaList = new List<Area>();
+
+            foreach (Area area in areas)
+            {
+                foreach (Bay bay in area.Bay)
+                {
+                    foreach (Tool tool in bay.Tool)
+                    {
+                        numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                        if (numOfCertifiedOps < tool.Certification.TargetTrained)
+                        {
+                            FailedAreaList.Add(area);
+                        }
+                    }
+                }
+            }
+            return FailedAreaList;
+        }
+
         public IActionResult Index()
         {
             List<Area> areas =db.Areas.Include(area => area.Bay).ThenInclude(bay => bay.Tool).ThenInclude(tool => tool.Certification).ThenInclude(cert => cert.OperatorCertifications).ThenInclude(opCert => opCert.Oper).ToList();
-            AreaIndexVM VM = new AreaIndexVM(areas);
+            List<Area> failedAreaList = getListOfFailedAreas(areas);
+            AreaIndexVM VM = new AreaIndexVM(areas, failedAreaList);
             return View(VM);
             //return View(db.Areas.ToList());
         }
