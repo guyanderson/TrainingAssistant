@@ -17,10 +17,15 @@
                 if (bay.BayId == fail.BayId)
                 {
                     <div class="panel panel-danger col-md-4 fill">
-                        
-                        
-                        <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content="You gotta go through it to see there aint nothing to it. Listen to the silence. And when the silence is deafening, youre in the center of your own universe">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
-
+                        <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
+                            @foreach (var y in Model.FailedCertList)
+                            {
+                                @foreach (var t in y.Tool)
+                                {
+                                @Html.DisplayFor(modelItem => t.Certification.Name)
+                                }
+                            }>
+                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
                         <div class="panel-body panel-body-custom">
                             @foreach (var tool in bay.Tool)
                             {
