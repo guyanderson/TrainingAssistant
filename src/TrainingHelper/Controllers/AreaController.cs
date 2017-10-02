@@ -20,6 +20,30 @@ namespace TrainingHelper.Controllers
         {
             int numOfCertifiedOps;
             List<Area> FailedAreaList = new List<Area>();
+            
+            foreach (Area area in areas)
+            {
+                foreach (Bay bay in area.Bay)
+                {
+                    foreach (Tool tool in bay.Tool)
+                    {
+                        bool alreadyExist = FailedAreaList.Contains(area);
+
+                        numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                        if (numOfCertifiedOps < tool.Certification.TargetTrained && alreadyExist == false)
+                        {
+                            FailedAreaList.Add(area);
+                        }
+                    }
+                }
+            }
+            return FailedAreaList;
+        }
+
+        public List<Certification> getListOfFailedCertifications(List<Area> areas)
+        {
+            int numOfCertifiedOps;
+            List<Certification> FailedCertList = new List<Certification>();
 
             foreach (Area area in areas)
             {
@@ -30,19 +54,20 @@ namespace TrainingHelper.Controllers
                         numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
                         if (numOfCertifiedOps < tool.Certification.TargetTrained)
                         {
-                            FailedAreaList.Add(area);
+                            FailedCertList.Add(tool.Certification);
                         }
                     }
                 }
             }
-            return FailedAreaList;
+            return FailedCertList;
         }
 
         public IActionResult Index()
         {
             List<Area> areas =db.Areas.Include(area => area.Bay).ThenInclude(bay => bay.Tool).ThenInclude(tool => tool.Certification).ThenInclude(cert => cert.OperatorCertifications).ThenInclude(opCert => opCert.Oper).ToList();
             List<Area> failedAreaList = getListOfFailedAreas(areas);
-            AreaIndexVM VM = new AreaIndexVM(areas, failedAreaList);
+            List<Certification> failedCertList = getListOfFailedCertifications(areas);
+            AreaIndexVM VM = new AreaIndexVM(areas, failedAreaList, failedCertList);
             return View(VM);
             //return View(db.Areas.ToList());
         }
@@ -98,3 +123,11 @@ namespace TrainingHelper.Controllers
 
     }
 }
+
+/*
+ &&  
+                            foreach (Area a in FailedAreaList)
+                            {
+                                area.AreaId != a.AreaId
+                            };
+     */

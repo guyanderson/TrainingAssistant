@@ -20,6 +20,24 @@ namespace TrainingHelper.Models
         public virtual Fab Fab { get; set; }
         public virtual ICollection<Bay> Bay { get; set; }
 
+        public override bool Equals(Object otherArea)
+        {
+            if (!(otherArea is Area))
+            {
+                return false;
+            }
+            else
+            {
+                Area newArea = (Area)otherArea;
+                return this.AreaId.Equals(newArea.AreaId);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.AreaId.GetHashCode();
+        }
+
         public Area() { }
 
         public Area(string name)

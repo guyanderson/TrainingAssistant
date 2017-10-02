@@ -17,7 +17,12 @@
             if (area.AreaId == fail.AreaId)
             {
                 <div class="panel panel-danger col-md-4 fill">
-                    <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
+                    <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
+                            @foreach (var cert in Model.FailedCertList)
+                            {
+                                @cert.Name
+                            }>
+                        @Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
                     <div class="panel-body panel-body-custom">
                         @foreach (var bay in area.Bay)
                         {
@@ -96,6 +101,14 @@
     }
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'top',
+            trigger: 'hover'
+        });
+    });
+</script>
 
 @*
     <div class="panel panel-success col-md-4 fill">

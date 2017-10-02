@@ -57,8 +57,8 @@ namespace TrainingHelper.Controllers
         {
             List<Bay> bay = db.Bays.Include(x => x.Tool).ThenInclude(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
             List<Bay> failedBayList = getListOfFailedBays(bay);
-            List<Certification> FailedCertList = getListOfFailedCertifications(bay);
-            BayIndexVM VM = new BayIndexVM(bay, failedBayList, FailedCertList);
+            List<Certification> failedCertList = getListOfFailedCertifications(bay);
+            BayIndexVM VM = new BayIndexVM(bay, failedBayList, failedCertList);
             return View(VM);
         }
 

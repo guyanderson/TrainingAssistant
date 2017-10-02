@@ -10,11 +10,13 @@ namespace TrainingHelper.ViewModels
     {
         public List<Area> Areas { get; set; }
         public List<Area> FailedAreaList { get; set; }
+        public List<Certification> FailedCertList { get; set; }
 
-        public AreaIndexVM(List<Area> areas, List<Area> failedAreaList)
+        public AreaIndexVM(List<Area> areas, List<Area> failedAreaList, List<Certification> failedCertList)
         {
             Areas = areas;
             FailedAreaList = failedAreaList;
+            FailedCertList = failedCertList;
         }
     }
 }
