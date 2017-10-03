@@ -217,6 +217,8 @@ C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Controllers\ToolContro
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Helpers\FabHelper.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170921032143_initial.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20170921032143_initial.Designer.cs
+C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20171003202651_imgArrayToOper.cs
+C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\20171003202651_imgArrayToOper.Designer.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Migrations\TrainingHelperDbContextModelSnapshot.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Models\Area.cs
 C:\Users\Guy\Desktop\TrainingAssistant\src\TrainingHelper\Models\Bay.cs

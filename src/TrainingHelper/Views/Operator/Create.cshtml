@@ -9,7 +9,7 @@
 <hr />
 <br />
 
-<form method="post" asp-action="Create" asp-controller="Operator">
+<form method="post" asp-action="Create" asp-controller="Operator" enctype="multipart/form-data">
     <br />
     @Html.HiddenFor(model => model.Oper.OperatorId)
 
@@ -26,7 +26,14 @@
     </select>
     <br />
     <br />
+    <div class="file-field input-field">
+        <input type="file" name="img" multiple id="img" />
+    </div>
+    <br />
+    <br />
     <input type="submit" value="Save" />
 </form>
+
+
 
 

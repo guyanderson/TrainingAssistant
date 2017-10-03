@@ -9,9 +9,19 @@
 <h4>Here is a list of all Operators in the Fab.</h4>
 <hr />
 
-@foreach (var x in Model)
+@foreach (var oper in Model)
 {
-    <div class="row">
-        @Html.ActionLink(x.Name, "Details", "Operator", new { id = x.OperatorId }, new { @class = "btn btn-success custom" })
+    <div class="panel panel-danger col-md-4 fill">
+        <div class="panel-heading mine">@Html.ActionLink(oper.Name, "Details", "Operator", new { id = oper.OperatorId })</div>
+        <div class="panel-body panel-body">"Hi"</div>
     </div>
 }
+
+
+
+
+@*
+      <div class="row">
+        @Html.ActionLink(oper.Name, "Details", "Operator", new { id = oper.OperatorId }, new { @class = "btn btn-success custom" })
+    </div>
+*@

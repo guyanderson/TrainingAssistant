@@ -4,13 +4,34 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h3>These are the Certifications for @Model.Oper.Name</h3>
-
-
-@foreach (var x in Model.Oper.OperatorCertifications)
-{
-    <div class="row">
-        @x.Certification.Name
+<div row>
+    <div row class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="col-md-10">
+            <div class="panel">
+                <div class="panel-body">
+                    @if (@Model.Oper.Img.Length > 0)
+            {
+                        <img src="data:image/jpg;base64,@System.Convert.ToBase64String(@Model.Oper.Img)" , style="max-width: 100%;" />
+                    }
+                    <br />
+                </div>
+            </div>
+        </div>
     </div>
-}
+    <br />
+    <div row class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h3><strong>Name:</strong> @Model.Oper.Name</h3>
+        <br />
+        <h4><strong>Shift:</strong> @Model.Shift.Name</h4>
+        <br />
+        <h4><strong>Held Certifications:</strong></h4>
+        @foreach (var operCert in Model.Oper.OperatorCertifications)
+        {
+            @Html.ActionLink(operCert.Certification.Name, "Details", "Certification", new { id = operCert.CertificationId }, new { @class = "btn btn-success custom" })
+            <br />
+        }
+    </div>
+</div>
+   
+
+        

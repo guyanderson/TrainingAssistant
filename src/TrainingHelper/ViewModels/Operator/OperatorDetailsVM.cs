@@ -9,10 +9,12 @@ namespace TrainingHelper.ViewModels
     public class OperatorDetailsVM
     {
         public Oper Oper;
+        public Shift Shift;
 
-        public OperatorDetailsVM(Oper oper)
+        public OperatorDetailsVM(Oper oper, Shift shift)
         {
             Oper = oper;
+            Shift = shift;
         }
     }
 }

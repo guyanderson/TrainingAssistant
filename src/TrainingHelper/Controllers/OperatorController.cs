@@ -34,9 +34,19 @@ namespace TrainingHelper.Controllers
 
         //Create new Operator POST
         [HttpPost]
-        public IActionResult Create(string name, int shiftId)
+        public IActionResult Create(string name, int shiftId, IFormFile img)
         {
-            Oper newOperator = new Oper(name, shiftId);
+            byte[] photo = new byte[0];
+            if (img != null)
+            {
+                using (Stream fileStream = img.OpenReadStream())
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    fileStream.CopyTo(ms);
+                    photo = ms.ToArray();
+                }
+            }
+            Oper newOperator = new Oper(name, shiftId, photo);
             db.Operators.Add(newOperator);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -45,7 +55,8 @@ namespace TrainingHelper.Controllers
         //Edit Operator GET
         public IActionResult Edit(int id)
         {
-            var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
+            var thisOperator = db.Operators.AsNoTracking().FirstOrDefault(x => x.OperatorId == id);
+            thisOperator.Img = thisOperator.Img; //Grabs the Img from the database then replaces it before EF removes it
             List<Shift> shifts = db.Shifts.ToList();
             List<Certification> certifications = db.Certifications.ToList();
             OperatorCertifications operatorCertifications = new OperatorCertifications();
@@ -85,7 +96,10 @@ namespace TrainingHelper.Controllers
         public IActionResult Details(int id)
         {
             Oper oper = db.Operators.Include(x => x.OperatorCertifications).ThenInclude(x => x.Certification).FirstOrDefault(x => x.OperatorId == id);
-            OperatorDetailsVM VM = new OperatorDetailsVM(oper);
+            var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
+            //Shift shift = Shift.thisOperator.ShiftId;
+            Shift shift = db.Shifts.FirstOrDefault(x => x.ShiftId == thisOperator.ShiftId);
+            OperatorDetailsVM VM = new OperatorDetailsVM(oper, shift);
             return View(VM);
         }
     }  

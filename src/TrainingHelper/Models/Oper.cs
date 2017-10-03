@@ -17,6 +17,7 @@ namespace TrainingHelper.Models
         public string Name { get; set; }
         [Required]
         public int ShiftId { get; set; }
+        public byte[] Img { get; set; }
 
         public virtual Shift Shift { get; set; }
         public virtual ICollection<OperatorCertifications> OperatorCertifications { get; set; }
@@ -27,6 +28,13 @@ namespace TrainingHelper.Models
         {
             Name = name;
             ShiftId = shiftId;
+        }
+
+        public Oper(string name, int shiftId, byte[] img)
+        {
+            Name = name;
+            ShiftId = shiftId;
+            Img = img;
         }
     }
 }
