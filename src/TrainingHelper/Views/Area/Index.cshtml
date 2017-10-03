@@ -12,120 +12,6 @@
 <div class="row">
     @foreach (var area in Model.Areas)
     {
-       @foreach (var b in area.Bay)
-       {
-           bool headerEnough = false;
-           foreach (var tool in b.Tool)
-           {
-               int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-               if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-               {
-                   headerEnough = true;
-               }
-               else
-               {
-                   headerEnough = false;
-                   break;
-               }
-           }
-           if (headerEnough == false)
-           {
-                <div class="panel panel-danger col-md-4 fill">
-                    <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
-                            @foreach (var cert in Model.FailedCertList)
-                            {
-                                @cert.Name
-                            }>
-                        @Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
-                    <div class="panel-body panel-body-custom">
-                        @foreach (var bay in area.Bay)
-                        {
-                            bool enough = false;
-                            foreach (var tool in bay.Tool)
-                            {
-                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                                {
-                                    enough = true;
-                                }
-                                else
-                                {
-                                    enough = false;
-                                    break;
-                                }
-                            }
-
-                            if (enough == true)
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
-                                </div>
-                            }
-                        }
-                     </div>
-                </div>
-            }
-            else
-            { 
-                <div class="panel panel-success col-md-4 fill">
-                    <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
-                    <div class="panel-body panel-body-custom">
-                        @foreach (var bay in area.Bay)
-                        {
-                            bool enough = false;
-                            foreach (var tool in bay.Tool)
-                            {
-                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                                {
-                                    enough = true;
-                                }
-                                else
-                                {
-                                    enough = false;
-                                    break;
-                                }
-                            }
-
-                            if (enough == true)
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            }
-        }
-    }
-</div>
-
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="popover"]').popover({
-            placement: 'top',
-            trigger: 'hover'
-        });
-    });
-</script>
-
-@*
         <div class="panel panel-success col-md-4 fill">
             <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
             <div class="panel-body panel-body-custom">
@@ -155,233 +41,377 @@
                     }
                     else
                     {
-                        <div class="col-md-6 panel-custom">
+                        <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area">
                             @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
                         </div>
                     }
                 }
             </div>
         </div>
-        ==========================================
-        @model TrainingHelper.ViewModels.AreaIndexVM
-
-
-
-    @{
-
-        ViewData["Title"] = "Index";
-
-        Layout = "~/Views/Shared/_Layout.cshtml";
-
     }
+</div>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'top',
+            trigger: 'hover'
+        });
+    });
+</script>
 
 
-    <br />
 
-    <h4>Here is a list of all Areas in the Fab.</h4>
+        @*
+            @model TrainingHelper.ViewModels.AreaIndexVM
 
-    <hr />
-
-
-
-    <div class="row">
-
-        @foreach (var area in Model.Areas)
-
-        {
-
-            @foreach (var fail in Model.FailedAreaList)
-
-            {
-
-                if (area.AreaId == fail.AreaId)
-
-                {
-
-                    <div class="panel panel-danger col-md-4 fill">
-
-                        <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
-
-                                @foreach (var cert in Model.FailedCertList)
-
-                                {
-
-                                    @cert.Name
-
-                                }>
-
-                            @Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
-
-                        <div class="panel-body panel-body-custom">
-
-                            @foreach (var bay in area.Bay)
-
-                            {
-
-                                bool enough = false;
-
-                                foreach (var tool in bay.Tool)
-
-                                {
-
-                                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-
-
-                                    if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-
-                                    {
-
-                                        enough = true;
-
-                                    }
-
-                                    else
-
-                                    {
-
-                                        enough = false;
-
-                                        break;
-
-                                    }
-
-                                }
-
-
-
-                                if (enough == true)
-
-                                {
-
-                                    <div class="col-md-6 panel-custom">
-
-                                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
-
-                                    </div>
-
-                                }
-
-                                else
-
-                                {
-
-                                    <div class="col-md-6 panel-custom">
-
-                                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
-
-                                    </div>
-
-                                }
-
-                            }
-
-                        </div>
-
-                    </div>
-
-                }
-
-                else
-
-                {
-
-                    <div class="panel panel-success col-md-4 fill">
-
-                        <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
-
-                        <div class="panel-body panel-body-custom">
-
-                            @foreach (var bay in area.Bay)
-
-                            {
-
-                                bool enough = false;
-
-                                foreach (var tool in bay.Tool)
-
-                                {
-
-                                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-
-
-                                    if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-
-                                    {
-
-                                        enough = true;
-
-                                    }
-
-                                    else
-
-                                    {
-
-                                        enough = false;
-
-                                        break;
-
-                                    }
-
-                                }
-
-
-
-                                if (enough == true)
-
-                                {
-
-                                    <div class="col-md-6 panel-custom">
-
-                                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
-
-                                    </div>
-
-                                }
-
-                                else
-
-                                {
-
-                                    <div class="col-md-6 panel-custom">
-
-                                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
-
-                                    </div>
-
-                                }
-
-                            }
-
-                        </div>
-
-                    </div>
-
-                }
-
+            @{
+                ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
             }
 
-        }
+            <br />
+            <h4>Here is a list of all Areas in the Fab.</h4>
+            <hr />
 
-    </div>
+            <div class="row">
+                @foreach (var area in Model.Areas)
+                {
+                   @foreach (var b in area.Bay)
+                   {
+                       bool headerEnough = false;
+                       foreach (var tool in b.Tool)
+                       {
+                           int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+                           if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                           {
+                               headerEnough = true;
+                           }
+                           else
+                           {
+                               headerEnough = false;
+                               break;
+                           }
+                       }
+                       if (headerEnough == false)
+                       {
+                            <div class="panel panel-danger col-md-4 fill">
+                                <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
+                                        @foreach (var cert in Model.FailedCertList)
+                                        {
+                                            @cert.Name
+                                        }>
+                                    @Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
+                                <div class="panel-body panel-body-custom">
+                                    @foreach (var bay in area.Bay)
+                                    {
+                                        bool enough = false;
+                                        foreach (var tool in bay.Tool)
+                                        {
+                                            int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+                                            if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                                            {
+                                                enough = true;
+                                            }
+                                            else
+                                            {
+                                                enough = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if (enough == true)
+                                        {
+                                            <div class="col-md-6 panel-custom">
+                                                @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6 panel-custom">
+                                                @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
+                                            </div>
+                                        }
+                                    }
+                                 </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="panel panel-success col-md-4 fill">
+                                <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
+                                <div class="panel-body panel-body-custom">
+                                    @foreach (var bay in area.Bay)
+                                    {
+                                        bool enough = false;
+                                        foreach (var tool in bay.Tool)
+                                        {
+                                            int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+                                            if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                                            {
+                                                enough = true;
+                                            }
+                                            else
+                                            {
+                                                enough = false;
+                                                break;
+                                            }
+                                        }
+
+                                        if (enough == true)
+                                        {
+                                            <div class="col-md-6 panel-custom">
+                                                @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="col-md-6 panel-custom">
+                                                @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+
+            <script>
+                $(document).ready(function () {
+                    $('[data-toggle="popover"]').popover({
+                        placement: 'top',
+                        trigger: 'hover'
+                    });
+                });
+            </script>
 
 
 
-    <script>
+                    ==========================================
+                    @model TrainingHelper.ViewModels.AreaIndexVM
 
-        $(document).ready(function () {
 
-            $('[data-toggle="popover"]').popover({
 
-                placement: 'top',
+                @{
 
-                trigger: 'hover'
+                    ViewData["Title"] = "Index";
 
-            });
+                    Layout = "~/Views/Shared/_Layout.cshtml";
 
-        });
+                }
 
-    </script>
-*@
+
+
+                <br />
+
+                <h4>Here is a list of all Areas in the Fab.</h4>
+
+                <hr />
+
+
+
+                <div class="row">
+
+                    @foreach (var area in Model.Areas)
+
+                    {
+
+                        @foreach (var fail in Model.FailedAreaList)
+
+                        {
+
+                            if (area.AreaId == fail.AreaId)
+
+                            {
+
+                                <div class="panel panel-danger col-md-4 fill">
+
+                                    <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
+
+                                            @foreach (var cert in Model.FailedCertList)
+
+                                            {
+
+                                                @cert.Name
+
+                                            }>
+
+                                        @Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
+
+                                    <div class="panel-body panel-body-custom">
+
+                                        @foreach (var bay in area.Bay)
+
+                                        {
+
+                                            bool enough = false;
+
+                                            foreach (var tool in bay.Tool)
+
+                                            {
+
+                                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+
+
+                                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+
+                                                {
+
+                                                    enough = true;
+
+                                                }
+
+                                                else
+
+                                                {
+
+                                                    enough = false;
+
+                                                    break;
+
+                                                }
+
+                                            }
+
+
+
+                                            if (enough == true)
+
+                                            {
+
+                                                <div class="col-md-6 panel-custom">
+
+                                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
+
+                                                </div>
+
+                                            }
+
+                                            else
+
+                                            {
+
+                                                <div class="col-md-6 panel-custom">
+
+                                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
+
+                                                </div>
+
+                                            }
+
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            }
+
+                            else
+
+                            {
+
+                                <div class="panel panel-success col-md-4 fill">
+
+                                    <div class="panel-heading mine">@Html.ActionLink(area.Name, "Details", "Area", new { id = area.AreaId })</div>
+
+                                    <div class="panel-body panel-body-custom">
+
+                                        @foreach (var bay in area.Bay)
+
+                                        {
+
+                                            bool enough = false;
+
+                                            foreach (var tool in bay.Tool)
+
+                                            {
+
+                                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+
+
+                                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+
+                                                {
+
+                                                    enough = true;
+
+                                                }
+
+                                                else
+
+                                                {
+
+                                                    enough = false;
+
+                                                    break;
+
+                                                }
+
+                                            }
+
+
+
+                                            if (enough == true)
+
+                                            {
+
+                                                <div class="col-md-6 panel-custom">
+
+                                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
+
+                                                </div>
+
+                                            }
+
+                                            else
+
+                                            {
+
+                                                <div class="col-md-6 panel-custom">
+
+                                                    @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
+
+                                                </div>
+
+                                            }
+
+                                        }
+
+                                    </div>
+
+                                </div>
+
+                            }
+
+                        }
+
+                    }
+
+                </div>
+
+
+
+                <script>
+
+                    $(document).ready(function () {
+
+                        $('[data-toggle="popover"]').popover({
+
+                            placement: 'top',
+
+                            trigger: 'hover'
+
+                        });
+
+                    });
+
+                </script>
+        *@

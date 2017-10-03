@@ -1,5 +1,4 @@
-﻿
-@model TrainingHelper.ViewModels.BayIndexVM
+﻿@model TrainingHelper.ViewModels.BayIndexVM
 
 @{
     ViewData["Title"] = "Index";
@@ -12,144 +11,150 @@
 <div class="row">
     @foreach (var bay in Model.Bay)
     {
-        @foreach (var fail in Model.FailedBayList)
-        {
-            if (bay.BayId == fail.BayId)
-            {
-                <div class="panel panel-danger col-md-4 fill">
-                    <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
-                        @foreach (var cert in Model.FailedCertList)
-                        {
-                            @cert.Name
-                        }>
-                        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
-                    <div class="panel-body panel-body-custom">
-                        @foreach (var tool in bay.Tool)
-                        {
-                            bool enough = false;
-                            foreach (var x in bay.Tool)
-                            {
-                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+        <div class="panel panel-success col-md-4 fill">
+            <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
+            <div class="panel-body panel-body-custom">
+                @foreach (var tool in bay.Tool)
+                {
+                    bool enough = false;
+                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                    foreach (var x in bay.Tool)
+                    {
+                        
 
-                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                                {
-                                    enough = true;
-                                }
-                                else
-                                {
-                                    enough = false;
-                                    break;
-                                }
-                            }
-                            if (enough == true)
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
-                                </div>
-                            }
-                        }
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="panel panel-success col-md-4 fill">
-                    <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
-                    <div class="panel-body panel-body-custom">
-                        @foreach (var tool in bay.Tool)
+                        if (numOfCertifiedOps >= tool.Certification.TargetTrained)
                         {
-                            bool enough = false;
-                            foreach (var x in bay.Tool)
-                            {
-                                int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
-
-                                if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                                {
-                                    enough = true;
-                                }
-                                else
-                                {
-                                    enough = false;
-                                    break;
-                                }
-                            }
-                            if (enough == true)
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
-                                </div>
-                            }
+                            enough = true;
                         }
-                    </div>
-                </div>
-            }
-        }
+                        else
+                        {
+                            enough = false;
+                            break;
+                        }
+                    }
+                    if (enough == true)
+                    {
+                        <div class="col-md-6 panel-custom">
+                            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6 panel-custom"  data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. ">
+                            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
+                        </div>
+                    }
+                }
+            </div>
+        </div>
     }
 </div>
 
+
+
 @*
-        @model TrainingHelper.ViewModels.BayIndexVM
+    @model TrainingHelper.ViewModels.BayIndexVM
 
-        @{
-            ViewData["Title"] = "Index";
-            Layout = "~/Views/Shared/_Layout.cshtml";
-        }
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-        <br />
-        <h4>Here is a list of all Bays in the Fab.</h4>
-        <hr />
-        <div class="row">
-            @foreach (var bay in Model.Bay)
+    <br />
+    <h4>Here is a list of all Bays in the Fab.</h4>
+    <hr />
+    <div class="row">
+        @foreach (var bay in Model.Bay)
+        {
+            @foreach (var fail in Model.FailedBayList)
             {
-                <div class="panel panel-success col-md-4 fill">
-                    <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
-                    <div class="panel-body panel-body-custom">
-                        @foreach (var tool in bay.Tool)
-                    {
-                        bool enough = false;
-                        foreach (var x in bay.Tool)
-                        {
-                            int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                if (bay.BayId == fail.BayId)
+                {
+                    <div class="panel panel-danger col-md-4 fill">
+                        <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content=
+                            @foreach (var cert in Model.FailedCertList)
+                            {
+                                @cert.Name
+                            }>
+                            @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
+                        <div class="panel-body panel-body-custom">
+                            @foreach (var tool in bay.Tool)
+                            {
+                                bool enough = false;
+                                foreach (var x in bay.Tool)
+                                {
+                                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
 
-                            if (numOfCertifiedOps >= tool.Certification.TargetTrained)
-                            {
-                                enough = true;
+                                    if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                                    {
+                                        enough = true;
+                                    }
+                                    else
+                                    {
+                                        enough = false;
+                                        break;
+                                    }
+                                }
+                                if (enough == true)
+                                {
+                                    <div class="col-md-6 panel-custom">
+                                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 panel-custom">
+                                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
+                                    </div>
+                                }
                             }
-                            else
-                            {
-                                enough = false;
-                                break;
-                            }
-                        }
-                        if (enough == true)
-                        {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="col-md-6 panel-custom">
-                                    @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
-                                </div>
-                            }
-                        }
+                        </div>
                     </div>
-                </div>
+                }
+                else
+                {
+                    <div class="panel panel-success col-md-4 fill">
+                        <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
+                        <div class="panel-body panel-body-custom">
+                            @foreach (var tool in bay.Tool)
+                            {
+                                bool enough = false;
+                                foreach (var x in bay.Tool)
+                                {
+                                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+
+                                    if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                                    {
+                                        enough = true;
+                                    }
+                                    else
+                                    {
+                                        enough = false;
+                                        break;
+                                    }
+                                }
+                                if (enough == true)
+                                {
+                                    <div class="col-md-6 panel-custom">
+                                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 panel-custom">
+                                        @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
             }
-        </div>
+        }
+    </div>
+
+
+            
 *@
 
 

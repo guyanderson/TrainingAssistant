@@ -31,6 +31,7 @@ namespace TrainingHelper.Models
             AreaId = areaId;
         }
 
+
     }
 }
 

@@ -6,11 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Here is the certification for @Model.Tool.Name.</h3>
+<h3>The @Html.ActionLink(@Model.Certification.Name, "Details", "Tool", new { id = @Model.Certification.CertificationId }, new { @class = "btn btn-success custom" }) certification is required to run @Model.Tool.Name.</h3>
 
-<div class="row">
-    @Html.ActionLink(@Model.Certification.Name, "Details", "Tool", new { id = @Model.Certification.CertificationId }, new { @class = "btn btn-success custom" })
-</div>
+<br />
 
 
 <h3>Here is a list of Operators who have the @Model.Certification.Name certification.</h3>
