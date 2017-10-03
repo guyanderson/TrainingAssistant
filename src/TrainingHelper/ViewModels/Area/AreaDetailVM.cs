@@ -9,12 +9,11 @@ namespace TrainingHelper.ViewModels
     public class AreaDetailVM
     {
         public virtual Area Area { get; set; }
-        public virtual ICollection<Bay> Bay { get; set; }
 
-        public AreaDetailVM(Area area, List<Bay> bays)
+
+        public AreaDetailVM(Area area)
         {
             Area = area;
-            Bay = bays;
         }
     }
 }

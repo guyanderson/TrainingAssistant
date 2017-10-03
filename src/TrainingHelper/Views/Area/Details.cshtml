@@ -7,12 +7,55 @@
 }
 
 <h3>Here are the Bays in the @Model.Area.Name Area.</h3>
+<hr />
+<br />
 
-@foreach (var x in Model.Bay)
-{
-    <div class="row">
-        @Html.ActionLink(x.Name, "Details", "Bay", new { id = x.BayId }, new { @class = "btn btn-success custom" })
-    </div>
-}
+<div class="row">
+    @foreach (var bay in Model.Area.Bay)
+    {
+        <div class="panel panel-success col-md-4 fill">
+            <div class="panel-heading mine">@Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }) </div>
+            <div class="panel-body panel-body-custom">
+                @foreach (var tool in bay.Tool)
+                {
+                    bool enough = false;
+                    int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
+                    foreach (var x in bay.Tool)
+                    {
+                        if (numOfCertifiedOps >= tool.Certification.TargetTrained)
+                        {
+                            enough = true;
+                        }
+                        else
+                        {
+                            enough = false;
+                            break;
+                        }
+                    }
+                    if (enough == true)
+                    {
+                        <div class="col-md-6 panel-custom" data-placement="bottom" data-html="true" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
+                            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-6 panel-custom" data-html="true" data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
+                            @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+</div>
 
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'bottom',
+            trigger: 'hover'
+        });
+    });
+</script>
 

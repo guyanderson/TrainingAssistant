@@ -115,9 +115,8 @@ namespace TrainingHelper.Controllers
         //list all Bays in selected Area
         public IActionResult Details(int id)
         {
-            Area area = db.Areas.FirstOrDefault(x => x.AreaId == id);
-            List<Bay> bays = db.Bays.Where(x => x.AreaId == id).ToList();
-            AreaDetailVM VM = new AreaDetailVM(area, bays);
+            Area area = db.Areas.Include(x => x.Bay).ThenInclude(bay => bay.Tool).ThenInclude(tool => tool.Certification).ThenInclude(cert => cert.OperatorCertifications).ThenInclude(opCert => opCert.Oper).FirstOrDefault(x => x.AreaId == id);
+            AreaDetailVM VM = new AreaDetailVM(area);
             return View(VM);
         }
 

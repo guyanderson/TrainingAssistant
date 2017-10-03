@@ -41,7 +41,7 @@
                     }
                     else
                     {
-                        <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area">
+                        <div class="col-md-6 panel-custom" data-html="true" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area. <br /><br /> Tools located in this bay are:<br /> @foreach (var t in bay.Tool) { @t.Name<br />} ">
                             @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
                         </div>
                     }
@@ -54,14 +54,18 @@
 <script>
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
-            placement: 'top',
+            placement: 'bottom',
             trigger: 'hover'
         });
     });
 </script>
 
+@*
+        <div class="col-md-6 panel-custom" data-html="true" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area. <br /><br /> Tools located in this bay are:<br /> @foreach (var t in bay.Tool) { @t.Name <br /> <br /> @foreach (var cert in t.Certification.OperatorCertifications) {@cert.Oper.Name <br />}}  ">
+        @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
+    </div>
 
-
+*@
         @*
             @model TrainingHelper.ViewModels.AreaIndexVM
 
