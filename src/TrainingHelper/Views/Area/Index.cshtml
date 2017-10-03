@@ -35,13 +35,13 @@
 
                     if (enough == true)
                     {
-                        <div class="col-md-6 panel-custom">
+                        <div class="col-md-6 panel-custom" data-placement="bottom" data-toggle="popover" title="Training Requirements are met" data-content="Tools located in this bay are:<br /> @foreach (var t in bay.Tool) { @t.Name<br />}">
                             @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-success bay-btn" })
                         </div>
                     }
                     else
                     {
-                        <div class="col-md-6 panel-custom" data-html="true" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area. <br /><br /> Tools located in this bay are:<br /> @foreach (var t in bay.Tool) { @t.Name<br />} ">
+                        <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="Training requirements are not met for all tools in this area. <br /><br /> Tools located in this bay are:<br /> @foreach (var t in bay.Tool) { @t.Name<br />} ">
                             @Html.ActionLink(bay.Name, "Details", "Bay", new { id = bay.BayId }, new { @class = "btn btn-danger bay-btn" })
                         </div>
                     }
@@ -55,7 +55,8 @@
     $(document).ready(function () {
         $('[data-toggle="popover"]').popover({
             placement: 'bottom',
-            trigger: 'hover'
+            trigger: 'hover',
+            html: 'true'
         });
     });
 </script>

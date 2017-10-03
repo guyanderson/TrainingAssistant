@@ -20,7 +20,7 @@
                     int numOfCertifiedOps = tool.Certification.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
                     foreach (var x in bay.Tool)
                     {
-                        
+
 
                         if (numOfCertifiedOps >= tool.Certification.TargetTrained)
                         {
@@ -34,13 +34,13 @@
                     }
                     if (enough == true)
                     {
-                        <div class="col-md-6 panel-custom">
+                        <div class="col-md-6 panel-custom" data-placement="bottom" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
                             @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
                         </div>
                     }
                     else
                     {
-                        <div class="col-md-6 panel-custom"  data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. ">
+                        <div class="col-md-6 panel-custom"  data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
                             @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
                         </div>
                     }
@@ -50,7 +50,15 @@
     }
 </div>
 
-
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'bottom',
+            trigger: 'hover',
+            html: 'true'
+        });
+    });
+</script>
 
 @*
     @model TrainingHelper.ViewModels.BayIndexVM
@@ -279,20 +287,5 @@
         </div>
 *@
 
-<div class="bs-example">
-    <button type="button" class="btn btn-primary" data-toggle="popover" title="Modal Short Text" data-content="You gotta go through it to see there ain't nothing to it. Listen to the silence.">Hover 1</button>
-    <button type="button" class="btn btn-success" data-toggle="popover" title="Modal Medium Text" data-content="The magic Indian is a mysterious spiritual force, and we're going to Cathedral Rock, and that's the vortex of the heart.">Hover 2</button>
-    <button type="button" class="btn btn-info" data-toggle="popover" title="Modal long Text" data-content="You gotta go through it to see there ain't nothing to it. Listen to the silence. And when the silence is deafening, you're in the center of your own universe.">Hover 3</button>
-
-    <button type="button" class="btn btn-info" data-toggle="popover" title="Missing required Certifications " data-content="You gotta go through it to see there ain't nothing to it. Listen to the silence. And when the silence is deafening, you're in the center of your own universe.">Hover 3</button>
-</div>
 
 
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="popover"]').popover({
-            placement: 'top',
-            trigger: 'hover'
-        });
-    });
-</script>
