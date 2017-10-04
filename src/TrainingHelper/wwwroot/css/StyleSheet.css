@@ -35,6 +35,9 @@ list-style: none;
 .flex {
   flex: 1;
 }
+    .fill {
+    display: table
+}
 
 */
 .btn.custom {
@@ -60,16 +63,36 @@ list-style: none;
 .panel-custom {
     padding: 0px;
 }
-.fill {
-    display: table
-}
+
 
 .panel-body-custom {
     padding: 0px;
     height: 175px;
+    
 }
 a:hover {
 	color: #FFF;
 	background: none;
 	text-decoration: none;
+}
+.panel-body-thumb {
+    padding: 2px;
+    background-color: #d9edf7;
+}
+.panel-thumb {
+    padding: 0px;
+    text-align: center;
+}
+.panel-head-thumb{
+    max-width: 100%;
+}
+.img-thumb{
+    height: 100px;
+    width: 100%;
+    image-resolution: 100dpi;
+    border-radius: 50%;
+}
+.navbar-default {
+    background-color: #a2aeae;
+    border-color: #002929;
 }

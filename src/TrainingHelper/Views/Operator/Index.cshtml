@@ -11,12 +11,16 @@
 
 @foreach (var oper in Model)
 {
-    <div class="panel panel-danger col-md-4 fill">
-        <div class="panel-heading mine">@Html.ActionLink(oper.Name, "Details", "Operator", new { id = oper.OperatorId })</div>
-        <div class="panel-body panel-body">"Hi"</div>
+    <div class="panel panel-info col-md-1 panel-thumb">
+        <div class="panel-heading ">@Html.ActionLink(oper.Name, "Details", "Operator", new { id = oper.OperatorId })</div>
+        <div class="panel-body panel-body-thumb">
+            @if (@oper.Img.Length > 0)
+            {
+                <img class="img-thumb" src="data:image/jpg;base64,@System.Convert.ToBase64String(@oper.Img)" , style="max-width: 100%;" />
+            }
+        </div>
     </div>
 }
-
 
 
 
@@ -24,4 +28,11 @@
       <div class="row">
         @Html.ActionLink(oper.Name, "Details", "Operator", new { id = oper.OperatorId }, new { @class = "btn btn-success custom" })
     </div>
+
+    @Url.Action("Details", "Operator", new { id = oper.OperatorId })
+
+        else
+        {
+         <p>No Img</p>
+        }
 *@
