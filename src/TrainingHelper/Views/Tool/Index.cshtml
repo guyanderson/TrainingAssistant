@@ -16,15 +16,19 @@
     @if (numOfCertifiedOps >= tool.Certification.TargetTrained)
     {
         <div class="panel panel-success col-md-4 fill">
-            <div class="panel-heading mine" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">@Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId })</div>
-            <div class="panel-body panel-body">In order to run @tool.Name, operators are required to have the @Html.ActionLink(tool.Certification.Name, "Details", "Certification", new { id = tool.ToolId }, new { @class = "btn btn-success custom" }) certification.</div>
+            <div class="panel-heading mine" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">@Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId })
+            </div>
+            <div class="panel-body panel-body">In order to run @tool.Name, operators are required to have the @Html.ActionLink(tool.Certification.Name, "Details", "Certification", new { id = tool.ToolId }, new { @class = "btn btn-success custom" }) certification.
+            </div>
         </div>
     }
     else
     {
         <div class="panel panel-danger col-md-4 fill">
-            <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">@Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId })</div>
-            <div class="panel-body panel-body">In order to run @tool.Name, operators are required to have the @Html.ActionLink(tool.Certification.Name, "Details", "Certification", new { id = tool.ToolId }, new { @class = "btn btn-danger custom" }) certification.</div>
+            <div class="panel-heading mine" data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">@Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId })
+            </div>
+            <div class="panel-body panel-body">In order to run @tool.Name, operators are required to have the @Html.ActionLink(tool.Certification.Name, "Details", "Certification", new { id = tool.ToolId }, new { @class = "btn btn-danger custom" }) certification.
+            </div>
         </div>
     }
 }

@@ -7,6 +7,7 @@ using TrainingHelper.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using TrainingHelper.ViewModels;
 
 namespace TrainingHelper.Controllers
 {
@@ -16,7 +17,9 @@ namespace TrainingHelper.Controllers
 
         public IActionResult Index()
         {
-            return View(db.Certifications.ToList());
+            List<Certification> cert = db.Certifications.Include(x => x.OperatorCertifications).ThenInclude(x => x.Oper).ToList();
+            CertificationIndexVM VM = new CertificationIndexVM(cert);
+            return View(VM);
         }
 
         //Create new Certification

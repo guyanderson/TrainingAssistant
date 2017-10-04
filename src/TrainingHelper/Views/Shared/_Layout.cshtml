@@ -1,41 +1,34 @@
 ﻿<!DOCTYPE html>
 
 <html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <script src="~/bower_components/jquery/dist/jquery.js"></script>
-    <link href="~/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <link href="~/css/StyleSheet.css" rel="stylesheet" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" @Html.ActionLink("Fab", "Index", "Fab")</a>
-                </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a @Html.ActionLink("Areas", "Index", "Area")</a></li>
-                    <li><a @Html.ActionLink("Bays", "Index", "Bay")</a></li>
-                    <li><a @Html.ActionLink("Tools", "Index", "Tool")</a></li>
-                    <li><a @Html.ActionLink("Operators", "Index", "Operator")</a></li>
-                    <li><a @Html.ActionLink("Certifications", "Index", "Certification")</a></li>
-
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        @RenderBody()  
-    </div>
-    <br />
-    <br />
-    <footer class="footer">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <script src="~/bower_components/jquery/dist/jquery.js"></script>
+        <link href="~/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <script src="~/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <link href="~/css/StyleSheet.css" rel="stylesheet" />
+        <title>@ViewBag.Title</title>
+    </head>
+    <body>
         <div class="container">
-            <a @Html.ActionLink("Admin", "Index", "Admin")</a>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" @Html.ActionLink("Fab", "Index", "Fab")</a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Areas", "Index", "Area")</li>
+                        <li>@Html.ActionLink("Bays", "Index", "Bay")</li>
+                        <li>@Html.ActionLink("Tools", "Index", "Tool")</li>
+                        <li>@Html.ActionLink("Operators", "Index", "Operator")</li>
+                        <li>@Html.ActionLink("Certifications", "Index", "Certification")</li>
+                        <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                    </ul>
+                </div>
+            </nav>
         </div>
-    </footer>
-</body>
+        <div class="container">
+            @RenderBody()  
+        </div>
+    </body>
 </html>

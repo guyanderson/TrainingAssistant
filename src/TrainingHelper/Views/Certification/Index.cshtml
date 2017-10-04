@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingHelper.Models.Certification>
+﻿@model TrainingHelper.ViewModels.CertificationIndexVM
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +7,18 @@
 <h4>Here is a list of all Certifications in the Fab.</h4>
 <hr />
 
-@foreach (var x in Model)
+@foreach (var cert in Model.Certifications)
 {
+
+    int numOfCertifiedOps = cert.OperatorCertifications.AsQueryable().Select(opCert => opCert.Oper).Count();
     <div class="row">
-        @Html.ActionLink(x.Name, "Details", "Certification", new { id = x.CertificationId }, new { @class = "btn btn-success custom" })
+        @if (numOfCertifiedOps >= cert.TargetTrained)
+        {
+            @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-success custom" })
+        }
+        else
+        {
+            @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-danger custom" })
+        }
     </div>
 }
-
