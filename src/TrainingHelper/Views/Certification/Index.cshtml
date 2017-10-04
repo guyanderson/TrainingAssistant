@@ -7,6 +7,7 @@
 <h4>Here is a list of all Certifications in the Fab.</h4>
 <hr />
 
+
 @foreach (var cert in Model.Certifications)
 {
 
@@ -14,11 +15,25 @@
     <div class="row">
         @if (numOfCertifiedOps >= cert.TargetTrained)
         {
-            @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-success custom" })
+           
+            <div class="col-md-6 panel-custom" data-toggle="popover" title="Training Requirements are met" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {@c.Oper.Name <br />}"> @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-success custom" })
+            </div>
         }
         else
         {
-            @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-danger custom" })
+            <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. Only @numOfCertifiedOps of @cert.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {@c.Oper.Name <br />}">
+                @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-danger custom" })
+            </div>
         }
     </div>
 }
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'bottom',
+            trigger: 'hover',
+            html: 'true'
+        });
+    });
+</script>
+
