@@ -55,8 +55,7 @@ namespace TrainingHelper.Controllers
         //Edit Operator GET
         public IActionResult Edit(int id)
         {
-            var thisOperator = db.Operators.AsNoTracking().FirstOrDefault(x => x.OperatorId == id);
-            thisOperator.Img = thisOperator.Img; //Grabs the Img from the database then replaces it before EF removes it
+            var thisOperator = db.Operators.FirstOrDefault(x => x.OperatorId == id);
             List<Shift> shifts = db.Shifts.ToList();
             List<Certification> certifications = db.Certifications.ToList();
             OperatorCertifications operatorCertifications = new OperatorCertifications();
@@ -67,6 +66,8 @@ namespace TrainingHelper.Controllers
         [HttpPost]
         public IActionResult Edit(Oper oper)
         {
+            var thisOperator = db.Operators.AsNoTracking().FirstOrDefault(o => o.OperatorId == oper.OperatorId);
+            oper.Img = thisOperator.Img; //Grabs the Img from the database then replaces it before EF removes it
             db.Entry(oper).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
