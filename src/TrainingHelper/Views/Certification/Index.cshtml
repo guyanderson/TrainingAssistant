@@ -16,12 +16,12 @@
         @if (numOfCertifiedOps >= cert.TargetTrained)
         {
            
-            <div class="col-md-6 panel-custom" data-toggle="popover" title="Training Requirements are met" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {@c.Oper.Name <br />}"> @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-success custom" })
+            <div class="col-md-6 panel-custom" data-toggle="popover" title="Training Requirements are met" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {<div class='panel panel-info col-md-6 panel-thumb'><div class='panel-heading '>@c.Oper.Name</div><div class='panel-body panel-body-thumb'><img class='img-thumb' src='data:image/jpg;base64,@System.Convert.ToBase64String(@c.Oper.Img)' , style='max-width: 100%;' /></div></div>}"> @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-success custom" })
             </div>
         }
         else
         {
-            <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. Only @numOfCertifiedOps of @cert.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {@c.Oper.Name <br />}">
+            <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="@cert.Name requireds @cert.TargetTrained operators to hold the @cert.Name certification. Only @numOfCertifiedOps of @cert.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var c in cert.OperatorCertifications) {<div class='panel panel-info col-md-6 panel-thumb'><div class='panel-heading '>@c.Oper.Name</div><div class='panel-body panel-body-thumb'><img class='img-thumb' src='data:image/jpg;base64,@System.Convert.ToBase64String(@c.Oper.Img)' , style='max-width: 100%;' /></div></div>}">
                 @Html.ActionLink(cert.Name, "Details", "Certification", new { id = cert.CertificationId }, new { @class = "btn btn-danger custom" })
             </div>
         }

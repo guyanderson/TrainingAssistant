@@ -1,0 +1,21 @@
+﻿@model TrainingHelper.ViewModels.CertificationDetailVM
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>These are the Operators who have the @Model.Certification.Name certification.</h3>
+
+@foreach (var operCert in Model.Certification.OperatorCertifications)
+{
+    <div class="panel panel-info col-md-1 panel-thumb" , style="margin: 5px;">
+        <div class="panel-heading ">@Html.ActionLink(operCert.Oper.Name, "Details", "Operator", new { id = operCert.Oper.OperatorId })</div>
+        <div class="panel-body panel-body-thumb">
+            @if (@operCert.Oper.Img.Length > 0)
+            {
+                <img class="img-thumb" src="data:image/jpg;base64,@System.Convert.ToBase64String(@operCert.Oper.Img)" />
+            }
+        </div>
+    </div>
+}

@@ -63,5 +63,13 @@ namespace TrainingHelper.Controllers
             return RedirectToAction("Index");
         }
 
+        //get operators for selected certification
+        public IActionResult Details(int id)
+        {
+            Certification cert = db.Certifications.Include(c => c.OperatorCertifications).ThenInclude(operCert => operCert.Oper).FirstOrDefault(x => x.CertificationId == id);
+            CertificationDetailVM VM = new CertificationDetailVM(cert);
+            return View(VM);
+        }
+
     }
 }
