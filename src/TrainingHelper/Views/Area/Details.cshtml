@@ -34,13 +34,13 @@
                     }
                     if (enough == true)
                     {
-                        <div class="col-md-6 panel-custom" data-placement="bottom" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
+                        <div class="col-md-6 panel-custom" data-placement="bottom" data-toggle="popover" title="Training Requirements are met" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {<div class='panel panel-info col-md-6 panel-thumb'><div class='panel-heading '>@cert.Oper.Name</div><div class='panel-body panel-body-thumb'><img class='img-thumb' src='data:image/jpg;base64,@System.Convert.ToBase64String(@cert.Oper.Img)' , style='max-width: 100%;' /></div></div>}">
                             @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-success bay-btn" })
                         </div>
                     }
                     else
                     {
-                        <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {@cert.Oper.Name <br />}">
+                        <div class="col-md-6 panel-custom" data-toggle="popover" title="Missing required Certifications" data-content="@tool.Name requireds @tool.Certification.TargetTrained operators to hold the @tool.Certification.Name certification. Only @numOfCertifiedOps of @tool.Certification.TargetTrained operators are certified. <br /><br /> Operators who have this certification are:<br /> @foreach (var cert in tool.Certification.OperatorCertifications) {<div class='panel panel-info col-md-6 panel-thumb'><div class='panel-heading '>@cert.Oper.Name</div><div class='panel-body panel-body-thumb'><img class='img-thumb' src='data:image/jpg;base64,@System.Convert.ToBase64String(@cert.Oper.Img)' , style='max-width: 100%;' /></div></div>}">
                             @Html.ActionLink(tool.Name, "Details", "Tool", new { id = tool.ToolId }, new { @class = "btn btn-danger bay-btn" })
                         </div>
                     }

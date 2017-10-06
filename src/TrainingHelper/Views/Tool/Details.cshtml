@@ -1,14 +1,26 @@
-﻿@model ToolDetailVM
-@using TrainingHelper.ViewModels
+﻿@model TrainingHelper.ViewModels.ToolDetailVM
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>The @Html.ActionLink(@Model.Certification.Name, "Details", "Tool", new { id = @Model.Certification.CertificationId }, new { @class = "btn btn-success custom" }) certification is required to run @Model.Tool.Name.</h3>
+<h3>The @Html.ActionLink(@Model.Tool.Certification.Name, "Details", "Certification", new { id = @Model.Tool.Certification.CertificationId }, new { @class = "btn btn-success custom" }) certification is required to run @Model.Tool.Name.</h3>
 
 <br />
 
 
-<h3>Here is a list of Operators who have the @Model.Certification.Name certification.</h3>
+<h3>These are the Operators who have the @Model.Tool.Certification.Name certification.</h3>
+
+@foreach (var operCert in Model.Tool.Certification.OperatorCertifications)
+{
+    <div class="panel panel-info col-md-1 panel-thumb", style="margin: 5px;">
+        <div class="panel-heading ">@Html.ActionLink(operCert.Oper.Name, "Details", "Operator", new { id = operCert.Oper.OperatorId })</div>
+        <div class="panel-body panel-body-thumb">
+            @if (@operCert.Oper.Img.Length > 0)
+            {
+                <img class="img-thumb" src="data:image/jpg;base64,@System.Convert.ToBase64String(@operCert.Oper.Img)" />
+            }
+        </div>
+    </div>
+}

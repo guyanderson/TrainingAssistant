@@ -75,9 +75,9 @@ namespace TrainingHelper.Controllers
         //Certification for selected Tool
         public IActionResult Details(int id)
         {
-            Tool tool = db.Tools.FirstOrDefault(x => x.ToolId == id);
-            Certification certification = db.Certifications.FirstOrDefault(x => x.CertificationId == tool.CertificationId);
-            ToolDetailVM VM = new ToolDetailVM(tool, certification);
+            Tool tool = db.Tools.Include(x => x.Certification).ThenInclude(x => x.OperatorCertifications).ThenInclude(x => x.Oper).FirstOrDefault(x => x.ToolId == id);
+            //Certification certification = db.Certifications.FirstOrDefault(x => x.CertificationId == tool.CertificationId);
+            ToolDetailVM VM = new ToolDetailVM(tool);
             return View(VM);
         }
         
